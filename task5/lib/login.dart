@@ -11,6 +11,7 @@ class _LoginPageState extends State<LoginPage> {
   bool? isChecked = false;
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+  late String mailID, password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +86,9 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.green,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, '/home');
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
