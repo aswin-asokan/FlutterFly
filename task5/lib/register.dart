@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  bool? isChecked = false;
+class _RegisterState extends State<Register> {
+  TextEditingController name = new TextEditingController();
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
-  late String mailID, password;
   final _DBbox = Hive.box('DBbox');
+  void write(var name, var email, var pass) {
+    _DBbox.put(email, [name, email, pass]);
+  }
+
   @override
   Widget build(BuildContext context) {
-    String? em, ps;
+    String? n, e, p;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -27,15 +30,21 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome back",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-              ),
-              Text(
-                "Login to your account",
+                "Register your account",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 25,
+              ),
+              TextField(
+                controller: name,
+                decoration: InputDecoration(
+                    hintText: "Name",
+                    border: OutlineInputBorder(),
+                    hintStyle: TextStyle(color: Colors.black)),
+              ),
+              SizedBox(
+                height: 15,
               ),
               TextField(
                 controller: email,
@@ -58,32 +67,6 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 15,
               ),
-              Row(
-                children: [
-                  Checkbox(
-                      value: isChecked,
-                      onChanged: (newBool) {
-                        setState(() {
-                          isChecked = newBool;
-                        });
-                      }),
-                  Text(
-                    "Remember me",
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Spacer(),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Forgot password?",
-                        style:
-                            TextStyle(fontSize: 15, color: Colors.blueAccent),
-                      ))
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
@@ -91,27 +74,25 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
                     setState(() {
-                      em = email.text.toString();
-                      ps = pass.text.toString();
-                    });
-                    var data = _DBbox.get(em);
-                    if (data != null) {
-                      if (data[2] != ps) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Password error")));
+                      if (name.text.isNotEmpty &&
+                          email.text.isNotEmpty &&
+                          pass.text.isNotEmpty) {
+                        n = name.text.toString();
+                        e = email.text.toString();
+                        p = pass.text.toString();
                       } else {
-                        Navigator.popAndPushNamed(context, '/home');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Fill all fields")));
                       }
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("User not found")));
-                    }
+                    });
+                    write(n, e, p);
+                    Navigator.popAndPushNamed(context, '/login');
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
                       width: double.infinity,
-                      child: Text("Login now",
+                      child: Text("Register",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -120,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   )),
               SizedBox(
-                height: 15,
+                height: 10,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -128,13 +109,13 @@ class _LoginPageState extends State<LoginPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5))),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/register');
+                    Navigator.pushNamed(context, '/login');
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
                       width: double.infinity,
-                      child: Text("Register Now",
+                      child: Text("Cancel",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,

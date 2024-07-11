@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:task5/home.dart';
 import 'package:task5/login.dart';
+import 'package:task5/register.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  var box = await Hive.openBox('DBbox');
   runApp(const MyApp());
 }
 
@@ -21,7 +25,8 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       routes: {
         '/home': (context) => Home(),
-        '/login': (context) => LoginPage()
+        '/login': (context) => LoginPage(),
+        '/register': (context) => Register()
       },
     );
   }
