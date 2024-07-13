@@ -21,6 +21,11 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
               onPressed: () {
+                Navigator.popAndPushNamed(context, '/caller');
+              },
+              icon: Icon(Icons.link)),
+          IconButton(
+              onPressed: () {
                 Navigator.popAndPushNamed(context, '/login');
               },
               icon: Icon(Icons.logout_outlined))
