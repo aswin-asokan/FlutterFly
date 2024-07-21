@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/aswin/Documents/flutterfly/task5/linux"
+    "cmake.sourceDirectory": "/home/aswin/Documents/flutterfly/task5/linux",
+    "java.compile.nullAnalysis.mode": "automatic"
 }

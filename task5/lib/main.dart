@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:task5/caller.dart';
-import 'package:task5/home.dart';
 import 'package:task5/login.dart';
-import 'package:task5/register.dart';
+import 'package:task5/pages/navigate.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -21,15 +19,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: false),
-      home: Home(),
-      routes: {
-        '/home': (context) => Home(),
-        '/login': (context) => LoginPage(),
-        '/register': (context) => Register(),
-        '/caller': (context) => Call()
-      },
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
+          useMaterial3: true),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
+      ),
+      themeMode: ThemeMode.system,
+      home: Navigate(),
     );
   }
 }

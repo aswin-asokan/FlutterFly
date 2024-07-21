@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:task5/pages/home.dart';
+import 'package:task5/pages/navigate.dart';
+import 'package:task5/register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,26 +15,32 @@ class _LoginPageState extends State<LoginPage> {
   bool? isChecked = false;
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+  bool passObscure = true;
   late String mailID, password;
   final _DBbox = Hive.box('DBbox');
   @override
   Widget build(BuildContext context) {
     String? em, ps;
+    double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: EdgeInsets.all(25),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: height * 0.2, left: 25, right: 25),
         child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Image.asset("assets/images/Group 1.png", height: 100),
+              SizedBox(
+                height: 15,
+              ),
               Text(
-                "Welcome back",
+                "Welcome Back",
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
               ),
               Text(
-                "Login to your account",
+                "Login to your Account",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -40,8 +49,18 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: email,
                 decoration: InputDecoration(
-                    hintText: "Email",
-                    border: OutlineInputBorder(),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 20, right: 5),
+                      child: Icon(Icons.mail_rounded),
+                    ),
+                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    hintText: "Mail ID",
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: TextStyle(color: Colors.black)),
               ),
               SizedBox(
@@ -49,10 +68,33 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextField(
                 controller: pass,
-                obscureText: true,
+                obscureText: passObscure,
                 decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 20, right: 5),
+                      child: Icon(Icons.lock),
+                    ),
+                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Password",
-                    border: OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 5, right: 10),
+                      child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              passObscure = !passObscure;
+                            });
+                          },
+                          icon: Icon(passObscure
+                              ? Icons.visibility
+                              : Icons.visibility_off)),
+                    ),
+                    suffixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: TextStyle(color: Colors.black)),
               ),
               SizedBox(
@@ -86,9 +128,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Color.fromRGBO(252, 151, 142, 1),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                          borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
                     setState(() {
                       em = email.text.toString();
@@ -100,7 +142,12 @@ class _LoginPageState extends State<LoginPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text("Password error")));
                       } else {
-                        Navigator.popAndPushNamed(context, '/home');
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Navigate(),
+                          ),
+                        );
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -111,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
                       width: double.infinity,
-                      child: Text("Login now",
+                      child: Text("Login",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
@@ -126,9 +173,10 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black87,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
+                          borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/register');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Register()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
