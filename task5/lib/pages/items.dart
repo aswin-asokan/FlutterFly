@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:task5/widgets/iamgeslide.dart';
 
 class Items extends StatefulWidget {
   final String name, path, category, shop, about;
   final double prize;
-  const Items(
-      this.name, this.shop, this.about, this.path, this.category, this.prize,
+  List<Widget> images;
+  Items(this.name, this.shop, this.about, this.path, this.category, this.prize,
+      this.images,
       {super.key});
 
   @override
@@ -16,22 +20,38 @@ class _ItemsState extends State<Items> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+        backgroundColor: Color.fromRGBO(250, 234, 235, 1),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
               child: Column(
                 children: [
-                  Container(
-                    height: height * 0.5,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20)),
-                      child: Image.asset(
-                        widget.path,
-                        fit: BoxFit.cover,
+                  Stack(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        child: ImageSlideshow(
+                          width: double.infinity,
+                          height: height * 0.5,
+                          initialPage: 0,
+                          indicatorColor: Colors.blue,
+                          indicatorBackgroundColor: Colors.grey,
+                          children: widget.images,
+                          onPageChanged: (value) {},
+                          autoPlayInterval: 6000,
+                          isLoop: true,
+                        ),
                       ),
-                    ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.favorite,
+                              size: 35,
+                            )),
+                      ),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
@@ -53,17 +73,21 @@ class _ItemsState extends State<Items> {
                         Text(
                           widget.name,
                           maxLines: 2,
-                          style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.urbanist(
                               fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           "About Item",
-                          style: TextStyle(color: Colors.pinkAccent),
+                          style: GoogleFonts.urbanist(color: Colors.pinkAccent),
                         ),
                         new Divider(
                           color: Colors.pinkAccent,
                         ),
                         Text(widget.about),
+                        SizedBox(
+                          height: 100,
+                        )
                       ],
                     ),
                   ),
@@ -73,6 +97,7 @@ class _ItemsState extends State<Items> {
           ),
         ),
         bottomSheet: Container(
+          width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: Row(
@@ -84,11 +109,11 @@ class _ItemsState extends State<Items> {
                   children: [
                     Text(
                       "Total Prize:",
-                      style: TextStyle(fontSize: 15),
+                      style: GoogleFonts.urbanist(fontSize: 15),
                     ),
                     Text(
                       "₹ " + widget.prize.toString(),
-                      style: TextStyle(fontSize: 20),
+                      style: GoogleFonts.urbanist(fontSize: 20),
                     ),
                   ],
                 ),
@@ -101,17 +126,19 @@ class _ItemsState extends State<Items> {
                           onPressed: () {}, icon: Icon(Icons.shopping_bag)),
                       ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
+                          fixedSize: Size(120, 50),
                           elevation: 0,
                           minimumSize: Size(50, 50),
+                          maximumSize: Size(120, 50),
                           backgroundColor: Colors.black87,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(0),
                           ),
                         ),
                         onPressed: () {},
-                        label: const Text(
+                        label: Text(
                           "Buy Now",
-                          style: TextStyle(color: Colors.white),
+                          style: GoogleFonts.urbanist(color: Colors.white),
                         ),
                       )
                     ],

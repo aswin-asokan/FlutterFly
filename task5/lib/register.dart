@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:password_strength_checker/password_strength_checker.dart';
 import 'package:task5/login.dart';
@@ -17,15 +18,18 @@ class _RegisterState extends State<Register> {
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
   final _DBbox = Hive.box('DBbox');
-  void write(var name, var email, var pass) {
-    _DBbox.put(email, [name, email, pass]);
+  void write(var name, var email, var pass, var phn, var img) {
+    _DBbox.put(email, [name, email, pass, phn, img]);
   }
 
+  String img = "assets/images/downloadfile-7.jpg";
   @override
   Widget build(BuildContext context) {
     final passNotifier = ValueNotifier<PasswordStrength?>(null);
-    String? n, e, p;
+    String? n, e, p, ph, i;
+
     double height = MediaQuery.sizeOf(context).height;
+    double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -35,16 +39,99 @@ class _RegisterState extends State<Register> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("assets/images/Group 1.png", height: 100),
-              SizedBox(
-                height: 15,
-              ),
               Text(
                 "Register your account",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: GoogleFonts.urbanist(
+                    fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SizedBox(
-                height: 25,
+                height: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          width: double.infinity,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Text("Choose Image",
+                                    style: GoogleFonts.urbanist(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold)),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          img =
+                                              'assets/images/downloadfile-7.jpg';
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: ClipOval(
+                                        child: Image.asset(
+                                          fit: BoxFit.cover,
+                                          "assets/images/downloadfile-7.jpg",
+                                          height: width * 0.4,
+                                          width: width * 0.4,
+                                        ),
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          img =
+                                              'assets/images/downloadfile-8.jpg';
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: ClipOval(
+                                        child: Image.asset(
+                                          fit: BoxFit.cover,
+                                          "assets/images/downloadfile-8.jpg",
+                                          height: width * 0.4,
+                                          width: width * 0.4,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: ClipOval(
+                    child: Image.asset(
+                      fit: BoxFit.cover,
+                      img,
+                      height: width * 0.45,
+                      width: width * 0.45,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               TextField(
                 controller: name,
@@ -61,7 +148,7 @@ class _RegisterState extends State<Register> {
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
               SizedBox(
                 height: 15,
@@ -81,7 +168,7 @@ class _RegisterState extends State<Register> {
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
               SizedBox(
                 height: 15,
@@ -101,7 +188,7 @@ class _RegisterState extends State<Register> {
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
               SizedBox(
                 height: 15,
@@ -125,7 +212,7 @@ class _RegisterState extends State<Register> {
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
               const SizedBox(height: 20),
               PasswordStrengthChecker(
@@ -152,13 +239,15 @@ class _RegisterState extends State<Register> {
                           n = name.text.toString();
                           e = email.text.toString();
                           p = pass.text.toString();
+                          ph = phn.text.toString();
+                          i = img;
                         }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text("Fill all fields")));
                       }
                     });
-                    write(n, e, p);
+                    write(n, e, p, ph, i);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginPage()));
                   },
@@ -168,7 +257,7 @@ class _RegisterState extends State<Register> {
                       width: double.infinity,
                       child: Text("Register",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: GoogleFonts.urbanist(
                               fontWeight: FontWeight.w500,
                               fontSize: 17,
                               color: Colors.white)),
@@ -191,7 +280,7 @@ class _RegisterState extends State<Register> {
                       width: double.infinity,
                       child: Text("Cancel",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: GoogleFonts.urbanist(
                               fontWeight: FontWeight.w500,
                               fontSize: 17,
                               color: Colors.white)),

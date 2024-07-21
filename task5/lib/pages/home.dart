@@ -24,7 +24,6 @@ class _HomeState extends State<Home> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(250, 234, 235, 1),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

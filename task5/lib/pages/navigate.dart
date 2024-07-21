@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:task5/pages/cart.dart';
 import 'package:task5/pages/favorites.dart';
 import 'package:task5/pages/home.dart';
-import 'package:task5/pages/profile.dart';
+import 'package:task5/pages/Profile/profile.dart';
 
 class Navigate extends StatefulWidget {
-  const Navigate({super.key});
+  String mail;
+  Navigate(this.mail, {super.key});
 
   @override
   State<Navigate> createState() => _NavigateState();
@@ -13,7 +14,7 @@ class Navigate extends StatefulWidget {
 
 class _NavigateState extends State<Navigate> {
   int currentPageIndex = 0;
-  final pages = [Home(), Cart(), Favorites(), Profile()];
+
   PageController _pageController = PageController();
 
   @override
@@ -30,13 +31,14 @@ class _NavigateState extends State<Navigate> {
 
   @override
   Widget build(BuildContext context) {
+    final pages = [Home(), Cart(), Favorites(), Profile(widget.mail)];
     return Scaffold(
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
           setState(() => currentPageIndex = index);
         },
-        children: <Widget>[Home(), Cart(), Favorites(), Profile()],
+        children: <Widget>[Home(), Cart(), Favorites(), Profile(widget.mail)],
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {

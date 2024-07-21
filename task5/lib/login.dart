@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:task5/pages/home.dart';
 import 'package:task5/pages/navigate.dart';
 import 'package:task5/register.dart';
 
@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   bool passObscure = true;
   late String mailID, password;
   final _DBbox = Hive.box('DBbox');
+
   @override
   Widget build(BuildContext context) {
     String? em, ps;
@@ -37,11 +38,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Text(
                 "Welcome Back",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                style: GoogleFonts.urbanist(
+                    fontWeight: FontWeight.w500, fontSize: 20),
               ),
               Text(
                 "Login to your Account",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: GoogleFonts.urbanist(
+                    fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 25,
@@ -61,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
               SizedBox(
                 height: 15,
@@ -95,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                     suffixIconColor: Color.fromRGBO(48, 45, 45, 1),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
-                    hintStyle: TextStyle(color: Colors.black)),
+                    hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
               SizedBox(
                 height: 15,
@@ -111,15 +114,15 @@ class _LoginPageState extends State<LoginPage> {
                       }),
                   Text(
                     "Remember me",
-                    style: TextStyle(fontSize: 15),
+                    style: GoogleFonts.urbanist(fontSize: 15),
                   ),
                   Spacer(),
                   TextButton(
                       onPressed: () {},
                       child: Text(
                         "Forgot password?",
-                        style:
-                            TextStyle(fontSize: 15, color: Colors.blueAccent),
+                        style: GoogleFonts.urbanist(
+                            fontSize: 15, color: Colors.blueAccent),
                       ))
                 ],
               ),
@@ -139,19 +142,23 @@ class _LoginPageState extends State<LoginPage> {
                     var data = _DBbox.get(em);
                     if (data != null) {
                       if (data[2] != ps) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Password error")));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Password error",
+                                style: GoogleFonts.urbanist())));
                       } else {
+                        var emailN = data[1];
+                        password = data[2];
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Navigate(),
+                            builder: (context) => Navigate(emailN),
                           ),
                         );
                       }
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("User not found")));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("User not found",
+                              style: GoogleFonts.urbanist())));
                     }
                   },
                   child: Padding(
@@ -160,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       child: Text("Login",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: GoogleFonts.urbanist(
                               fontWeight: FontWeight.w500,
                               fontSize: 17,
                               color: Colors.white)),
@@ -184,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       child: Text("Register Now",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: GoogleFonts.urbanist(
                               fontWeight: FontWeight.w500,
                               fontSize: 17,
                               color: Colors.white)),

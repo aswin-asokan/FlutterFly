@@ -9,7 +9,7 @@ Widget homeTop(double height, double width) {
         alignment: Alignment.center,
         child: ImageSlideshow(
           width: double.infinity,
-          height: height * 0.4,
+          height: height * 0.5,
           initialPage: 0,
           indicatorColor: Colors.blue,
           indicatorBackgroundColor: Colors.grey,
@@ -20,7 +20,7 @@ Widget homeTop(double height, double width) {
                 "Redefine Your Style", "Elevate Your Presence.", Colors.white),
           ],
           onPageChanged: (value) {},
-          autoPlayInterval: 3000,
+          autoPlayInterval: 7000,
           isLoop: true,
         ),
       ),

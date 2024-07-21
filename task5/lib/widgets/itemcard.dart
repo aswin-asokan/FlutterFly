@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task5/pages/items.dart';
 
 Widget ItemCard(String path, String shop, String about, String category,
-    String name, double prize, double w, var context) {
+    String name, double prize, double w, List<Widget> images, var context) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Items(name, shop, about, path, category, prize),
+          builder: (context) =>
+              Items(name, shop, about, path, category, prize, images),
         ),
       );
     },
     child: DecoratedBox(
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
           boxShadow: [
             BoxShadow(
               color: const Color.fromARGB(26, 88, 85, 85),
@@ -37,6 +40,8 @@ Widget ItemCard(String path, String shop, String about, String category,
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15)),
                 child: Image.asset(
+                  height: w * 0.3,
+                  fit: BoxFit.cover,
                   path,
                   width: double.infinity,
                 ),
@@ -48,19 +53,22 @@ Widget ItemCard(String path, String shop, String about, String category,
                   children: [
                     Text(
                       category,
-                      style: TextStyle(color: Colors.black38),
+                      style: GoogleFonts.urbanist(color: Colors.black38),
                     ),
                     Text(name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: GoogleFonts.urbanist(
                             color: Colors.black,
                             fontWeight: FontWeight.w900,
                             fontSize: 16)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("₹ " + prize.toString()),
+                        Text(
+                          "₹ " + prize.toString(),
+                          style: GoogleFonts.urbanist(),
+                        ),
                         IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
                       ],
                     ),

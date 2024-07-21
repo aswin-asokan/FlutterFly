@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget imageSlide(String path, String h, String t, Color c) {
   return Container(
@@ -15,11 +16,11 @@ Widget imageSlide(String path, String h, String t, Color c) {
               text: TextSpan(children: [
                 TextSpan(
                     text: h + "\n",
-                    style: TextStyle(
+                    style: GoogleFonts.urbanist(
                         fontSize: 27, color: c, fontWeight: FontWeight.bold)),
                 TextSpan(
                     text: t,
-                    style: TextStyle(
+                    style: GoogleFonts.urbanist(
                         fontSize: 20, color: c, fontWeight: FontWeight.w400)),
               ]),
             )),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:task5/widgets/kids.dart';
 import 'package:task5/widgets/men.dart';
 import 'package:task5/widgets/women.dart';
 
@@ -37,8 +39,8 @@ class _HomebottomState extends State<Homebottom> {
       case 1:
         return Women(MediaQuery.of(context).size.width, context);
       case 2:
-        return Center(
-            child: Text('Kids Section')); // Placeholder for Kids section
+        return kids(MediaQuery.of(context).size.width,
+            context); // Placeholder for Kids section
       default:
         return Men(MediaQuery.of(context).size.width, context);
     }
@@ -53,21 +55,27 @@ class _HomebottomState extends State<Homebottom> {
           alignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             TextButton(
-              child: const Text('Men'),
+              child: Text('Men', style: GoogleFonts.urbanist(fontSize: 16)),
               onPressed: () => _onButtonPressed(0),
             ),
             TextButton(
-              child: const Text('Women'),
+              child: Text(
+                'Women',
+                style: GoogleFonts.urbanist(fontSize: 16),
+              ),
               onPressed: () => _onButtonPressed(1),
             ),
             TextButton(
-              child: const Text('Kids'),
+              child: Text('Kids', style: GoogleFonts.urbanist(fontSize: 16)),
               onPressed: () => _onButtonPressed(2),
             ),
           ],
         ),
         SizedBox(height: 2),
-        _getPageContent(),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: _getPageContent(),
+        ),
       ],
     );
   }
