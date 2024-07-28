@@ -1,5 +1,5 @@
 # Pocket Dresses
-Welcome to the Pocket Dresses Flutter project! This repository contains the source code built during our workshop.
+Welcome to the Pocket Dresses Flutter project! This repository contains the source code built during our workshop. The database used for this project is Hive.
 
 ## Working Features
 * Registration: Sign up to create an account.
