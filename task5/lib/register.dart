@@ -236,7 +236,7 @@ class _RegisterState extends State<Register> {
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               PasswordStrengthChecker(
                 strength: passNotifier,
               ),

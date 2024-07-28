@@ -29,7 +29,7 @@ Widget kids(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-28 15-07-13.png",
+            "assets/images/Screenshot from 2024-07-21 19-36-50.png",
             "Shop",
             "Material composition60/40 Cotton Polyester\nFit typeRegular Fit\nSleeve typeHalf Sleeve\nCollar styleCollarless\nLengthStandard Length\nNeck styleDom\nCountry of OriginIndia",
             "T-Shirt",
@@ -44,7 +44,7 @@ Widget kids(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-28 15-07-28.png",
+            "assets/images/Screenshot from 2024-07-21 19-36-50.png",
             "Shop",
             "Material composition60/40 Cotton Polyester\nFit typeRegular Fit\nSleeve typeHalf Sleeve\nCollar styleCollarless\nLengthStandard Length\nNeck styleDom\nCountry of OriginIndia",
             "T-Shirt",
@@ -59,7 +59,7 @@ Widget kids(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-28 15-07-45.png",
+            "assets/images/Screenshot from 2024-07-21 19-36-50.png",
             "Shop",
             "Material composition60/40 Cotton Polyester\nFit typeRegular Fit\nSleeve typeHalf Sleeve\nCollar styleCollarless\nLengthStandard Length\nNeck styleDom\nCountry of OriginIndia",
             "T-Shirt",

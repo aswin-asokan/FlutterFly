@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:task5/pages/forgotPass.dart';
 import 'package:task5/pages/navigate.dart';
 import 'package:task5/register.dart';
 import 'package:task5/variables.dart';
@@ -120,7 +121,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Spacer(),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordPage()),
+                        );
+                      },
                       child: Text(
                         "Forgot password?",
                         style: GoogleFonts.urbanist(

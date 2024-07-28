@@ -32,7 +32,7 @@ Widget Men(double width, var context) {
             "Shop",
             "Step into timeless style with our Classic Fit Cotton Shirt, a wardrobe essential that blends comfort with elegance. Crafted from premium, breathable cotton, this shirt is designed to keep you cool and comfortable all day long.",
             "Shirt",
-            "Essential's Men's Short Sleeve\n",
+            "Men's Long Sleeve\n",
             1200,
             width,
             [
@@ -43,7 +43,7 @@ Widget Men(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-28 15-05-53.png",
+            "assets/images/Screenshot from 2024-07-21 13-55-23.png",
             "Shop",
             "Step into timeless style with our Classic Fit Cotton Shirt, a wardrobe essential that blends comfort with elegance. Crafted from premium, breathable cotton, this shirt is designed to keep you cool and comfortable all day long.",
             "Shirt",
@@ -58,7 +58,7 @@ Widget Men(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-28 15-06-04.png",
+            "assets/images/Screenshot from 2024-07-21 13-55-23.png",
             "Shop",
             "Step into timeless style with our Classic Fit Cotton Shirt, a wardrobe essential that blends comfort with elegance. Crafted from premium, breathable cotton, this shirt is designed to keep you cool and comfortable all day long.",
             "Shirt",

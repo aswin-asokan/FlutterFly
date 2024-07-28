@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              homeTop(height, width),
+              HomeTop(height, width),
               Homebottom() // Display content based on the selected tab
             ],
           ),
