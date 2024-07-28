@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:task5/widgets/homebottom.dart';
 import 'package:task5/widgets/hometop.dart';
-import 'package:task5/widgets/iamgeslide.dart';
-import 'package:task5/widgets/itemcard.dart';
-import 'package:task5/widgets/men.dart';
-import 'package:task5/widgets/women.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,8 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _DBbox = Hive.box('DBbox');
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -26,6 +18,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               homeTop(height, width),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 import 'package:task5/variables.dart';
 
 class Cartwidget extends StatefulWidget {
@@ -13,6 +14,7 @@ class Cartwidget extends StatefulWidget {
 int count = 1;
 
 class _CartwidgetState extends State<Cartwidget> {
+  final cartBox = Hive.box('Cart');
   late double p;
   @override
   void initState() {
@@ -25,6 +27,7 @@ class _CartwidgetState extends State<Cartwidget> {
   Widget build(BuildContext context) {
     double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
+    print(widget.name + widget.path);
     return Column(
       children: [
         Container(
@@ -83,7 +86,7 @@ class _CartwidgetState extends State<Cartwidget> {
                     Container(
                         width: w * 0.5,
                         child: Text(
-                          "Prize: \$ " + p.toString(),
+                          "Prize: \₹  " + p.toString(),
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.urbanist(fontSize: 16),
                         )),

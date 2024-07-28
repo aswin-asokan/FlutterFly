@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task5/widgets/favwidget.dart';
+import 'package:hive/hive.dart';
+import 'package:task5/variables.dart';
+import 'package:task5/widgets/orderwidget.dart';
 
-class Favorites extends StatefulWidget {
-  const Favorites({super.key});
+class Orders extends StatefulWidget {
+  const Orders({super.key});
 
   @override
-  State<Favorites> createState() => _FavoritesState();
+  State<Orders> createState() => _OrdersState();
 }
 
-class _FavoritesState extends State<Favorites> {
+class _OrdersState extends State<Orders> {
+  final orderBox = Hive.box('Orders');
   @override
   Widget build(BuildContext context) {
-    var favItems = [];
+    List<dynamic> orderItems = orderBox.get(mailS, defaultValue: []);
     double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
       body: SafeArea(
@@ -24,24 +27,24 @@ class _FavoritesState extends State<Favorites> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "My Favorites",
+                  "My Orders",
                   style: GoogleFonts.urbanist(
                       fontSize: 35, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 15,
                 ),
-                favItems.isNotEmpty
+                orderItems.isNotEmpty
                     ? ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        itemCount: favItems.length,
+                        itemCount: orderItems.length,
                         itemBuilder: (context, index) {
-                          return Favwidget(
-                            favItems[index][0].toString(),
-                            favItems[index][1].toString(),
-                            favItems[index][2].toString(),
-                            double.parse(favItems[index][3].toString()),
+                          final item = orderItems[index];
+                          return Orderwidget(
+                            item['path'] ?? '',
+                            item['name'] ?? '',
+                            item['date'] ?? '',
                           );
                         })
                     : Padding(

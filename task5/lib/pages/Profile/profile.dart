@@ -3,34 +3,39 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:task5/login.dart';
 import 'package:task5/pages/Profile/EditProfile.dart';
+import 'package:task5/pages/Profile/Settings.dart';
+import 'package:task5/pages/orders.dart';
 import 'package:task5/variables.dart';
 import 'package:task5/widgets/widgets.dart';
 
 class Profile extends StatefulWidget {
-  String mail;
-  Profile(this.mail, {super.key});
+  Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
-final _DBbox = Hive.box('DBbox');
-
 class _ProfileState extends State<Profile> {
+  final _DBbox = Hive.box('DBbox');
   @override
   Widget build(BuildContext context) {
-    var data = _DBbox.get(widget.mail);
+    var data = _DBbox.get(mailS);
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
+          padding: EdgeInsets.only(left: 25, right: 25),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: height * 0.06,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -41,9 +46,6 @@ class _ProfileState extends State<Profile> {
                       ),
                       IconButton(
                           onPressed: () {
-                            setState(() {
-                              remember = false;
-                            });
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -103,9 +105,9 @@ class _ProfileState extends State<Profile> {
                     height: 15,
                   ),
                   profileIcon(
-                      "Profile", "Edit your profile", context, Editprofile()),
+                      "Settings", "Edit your preferences", context, Settings()),
                   profileIcon(
-                      "My Orders", "View your orders", context, Editprofile()),
+                      "My Orders", "View your orders", context, Orders()),
                   profileIcon("Saved Addresses", "Change delivery address",
                       context, Editprofile()),
                   profileIcon("Payment Methods", "Saved credit/debit cards",

@@ -5,22 +5,22 @@ import 'package:task5/pages/home.dart';
 import 'package:task5/pages/Profile/profile.dart';
 
 class Navigate extends StatefulWidget {
-  String mail;
-  Navigate(this.mail, {super.key});
+  final int index;
+  Navigate(this.index, {super.key});
 
   @override
   State<Navigate> createState() => _NavigateState();
 }
 
 class _NavigateState extends State<Navigate> {
-  int currentPageIndex = 0;
-
-  PageController _pageController = PageController();
+  late int currentPageIndex;
+  late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    currentPageIndex = widget.index;
+    _pageController = PageController(initialPage: currentPageIndex);
   }
 
   @override
@@ -31,26 +31,31 @@ class _NavigateState extends State<Navigate> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [Home(), Cart(), Favorites(), Profile(widget.mail)];
+    final pages = [Home(), Cart(), Favorites(), Profile()];
     return Scaffold(
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
-          setState(() => currentPageIndex = index);
+          setState(() {
+            currentPageIndex = index;
+          });
         },
-        children: <Widget>[Home(), Cart(), Favorites(), Profile(widget.mail)],
+        children: pages,
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
-            _pageController.animateToPage(index,
-                duration: Duration(milliseconds: 300), curve: Curves.linear);
+            _pageController.animateToPage(
+              index,
+              duration: Duration(milliseconds: 500),
+              curve: Curves.linearToEaseOut,
+            );
           });
         },
         indicatorColor: Color.fromRGBO(252, 151, 142, 1),
         selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
+        destinations: const <NavigationDestination>[
           NavigationDestination(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -59,7 +64,10 @@ class _NavigateState extends State<Navigate> {
             icon: Icon(Icons.shopping_bag),
             label: 'Cart',
           ),
-          NavigationDestination(icon: Icon(Icons.favorite), label: "Favorites"),
+          NavigationDestination(
+            icon: Icon(Icons.favorite),
+            label: "Favorites",
+          ),
           NavigationDestination(
             icon: Icon(Icons.person),
             label: 'Profile',

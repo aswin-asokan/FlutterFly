@@ -3,7 +3,6 @@ import 'package:task5/widgets/itemcard.dart';
 import 'package:task5/widgets/widgets.dart';
 
 Widget Men(double width, var context) {
-  var size = MediaQuery.of(context).size;
   return GridView.count(
       shrinkWrap: true,
       crossAxisCount: 2,
@@ -29,7 +28,7 @@ Widget Men(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-21 13-55-23.png",
+            "assets/images/Screenshot from 2024-07-28 15-05-39.png",
             "Shop",
             "Step into timeless style with our Classic Fit Cotton Shirt, a wardrobe essential that blends comfort with elegance. Crafted from premium, breathable cotton, this shirt is designed to keep you cool and comfortable all day long.",
             "Shirt",
@@ -44,7 +43,7 @@ Widget Men(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-21 13-55-23.png",
+            "assets/images/Screenshot from 2024-07-28 15-05-53.png",
             "Shop",
             "Step into timeless style with our Classic Fit Cotton Shirt, a wardrobe essential that blends comfort with elegance. Crafted from premium, breathable cotton, this shirt is designed to keep you cool and comfortable all day long.",
             "Shirt",
@@ -59,7 +58,7 @@ Widget Men(double width, var context) {
             ],
             context),
         ItemCard(
-            "assets/images/Screenshot from 2024-07-21 13-55-23.png",
+            "assets/images/Screenshot from 2024-07-28 15-06-04.png",
             "Shop",
             "Step into timeless style with our Classic Fit Cotton Shirt, a wardrobe essential that blends comfort with elegance. Crafted from premium, breathable cotton, this shirt is designed to keep you cool and comfortable all day long.",
             "Shirt",

@@ -17,16 +17,17 @@ class _RegisterState extends State<Register> {
   TextEditingController phn = new TextEditingController();
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+  TextEditingController address = new TextEditingController();
   final _DBbox = Hive.box('DBbox');
-  void write(var name, var email, var pass, var phn, var img) {
-    _DBbox.put(email, [name, email, pass, phn, img]);
+  void write(var name, var email, var pass, var phn, var img, var add) {
+    _DBbox.put(email, [name, email, pass, phn, img, add]);
   }
 
   String img = "assets/images/downloadfile-7.jpg";
   @override
   Widget build(BuildContext context) {
     final passNotifier = ValueNotifier<PasswordStrength?>(null);
-    String? n, e, p, ph, i;
+    String? n, e, p, ph, i, a;
 
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
@@ -34,7 +35,8 @@ class _RegisterState extends State<Register> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: height * 0.05, left: 25, right: 25),
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.only(top: height * 0.01, left: 25, right: 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -194,6 +196,26 @@ class _RegisterState extends State<Register> {
                 height: 15,
               ),
               TextField(
+                controller: address,
+                decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 20, right: 5),
+                      child: Icon(Icons.house),
+                    ),
+                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    hintText: "Address",
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        borderSide: BorderSide(
+                            width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    hintStyle: GoogleFonts.urbanist(color: Colors.black)),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextField(
                 controller: pass,
                 obscureText: true,
                 onChanged: (value) {
@@ -231,6 +253,7 @@ class _RegisterState extends State<Register> {
                       if (name.text.isNotEmpty &&
                           email.text.isNotEmpty &&
                           pass.text.isNotEmpty &&
+                          address.text.isNotEmpty &&
                           phn.text.isNotEmpty) {
                         if (!EmailValidator.validate(email.text.toString())) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -240,6 +263,7 @@ class _RegisterState extends State<Register> {
                           e = email.text.toString();
                           p = pass.text.toString();
                           ph = phn.text.toString();
+                          a = address.text.toString();
                           i = img;
                         }
                       } else {
@@ -247,7 +271,7 @@ class _RegisterState extends State<Register> {
                             SnackBar(content: Text("Fill all fields")));
                       }
                     });
-                    write(n, e, p, ph, i);
+                    write(n, e, p, ph, i, a);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginPage()));
                   },

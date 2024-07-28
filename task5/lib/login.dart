@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:task5/pages/navigate.dart';
 import 'package:task5/register.dart';
+import 'package:task5/variables.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,13 +27,14 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: height * 0.2, left: 25, right: 25),
+        physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.only(top: height * 0.15, left: 25, right: 25),
         child: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("assets/images/Group 1.png", height: 100),
+              Image.asset("assets/images/logo_nobg.png", height: 150),
               SizedBox(
                 height: 15,
               ),
@@ -146,12 +148,19 @@ class _LoginPageState extends State<LoginPage> {
                             content: Text("Password error",
                                 style: GoogleFonts.urbanist())));
                       } else {
-                        var emailN = data[1];
                         password = data[2];
+                        setState(() {
+                          nameS = data[0];
+                          mailS = data[1];
+                          passwordS = data[2];
+                          mobileS = data[3];
+                          imageS = data[4];
+                          address = data[5];
+                        });
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Navigate(emailN),
+                            builder: (context) => Navigate(0),
                           ),
                         );
                       }

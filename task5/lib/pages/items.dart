@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task5/widgets/iamgeslide.dart';
+import 'package:hive/hive.dart';
+import 'package:task5/variables.dart';
 
 class Items extends StatefulWidget {
   final String name, path, category, shop, about;
@@ -16,9 +17,22 @@ class Items extends StatefulWidget {
 }
 
 class _ItemsState extends State<Items> {
+  late String size;
+  final cartBox = Hive.box('Cart');
+
+  void write(String email, List cartItems) {
+    cartBox.put(email, cartItems);
+    print('Updated cart items for $email: ${cartBox.get(email)}');
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    // Fetch existing cart items for the current user
+    List cartItems = cartBox.get(mailS, defaultValue: []);
+
     return Scaffold(
         backgroundColor: Color.fromRGBO(250, 234, 235, 1),
         body: SafeArea(
@@ -81,7 +95,7 @@ class _ItemsState extends State<Items> {
                           "About Item",
                           style: GoogleFonts.urbanist(color: Colors.pinkAccent),
                         ),
-                        new Divider(
+                        Divider(
                           color: Colors.pinkAccent,
                         ),
                         Text(widget.about),
@@ -123,7 +137,101 @@ class _ItemsState extends State<Items> {
                   child: Row(
                     children: [
                       IconButton(
-                          onPressed: () {}, icon: Icon(Icons.shopping_bag)),
+                          onPressed: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    width: double.infinity,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "Choose Size",
+                                          style: GoogleFonts.urbanist(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        OverflowBar(
+                                          alignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            TextButton(
+                                              child: Text('Large',
+                                                  style: GoogleFonts.urbanist(
+                                                      fontSize: 16)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  size = "L";
+                                                });
+                                                cartItems.add({
+                                                  'path': widget.path,
+                                                  'name': widget.name,
+                                                  'size': size,
+                                                  'prize': widget.prize,
+                                                  'count': 1,
+                                                });
+                                                write(mailS, cartItems);
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: Text(
+                                                'Medium',
+                                                style: GoogleFonts.urbanist(
+                                                    fontSize: 16),
+                                              ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  size = "M";
+                                                });
+                                                cartItems.add({
+                                                  'path': widget.path,
+                                                  'name': widget.name,
+                                                  'size': size,
+                                                  'prize': widget.prize,
+                                                  'count': 1,
+                                                });
+                                                write(mailS, cartItems);
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: Text('Small',
+                                                  style: GoogleFonts.urbanist(
+                                                      fontSize: 16)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  size = "S";
+                                                });
+                                                cartItems.add({
+                                                  'path': widget.path,
+                                                  'name': widget.name,
+                                                  'size': size,
+                                                  'prize': widget.prize,
+                                                  'count': 1,
+                                                });
+                                                write(mailS, cartItems);
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          },
+                          icon: Icon(Icons.shopping_bag)),
                       ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
                           fixedSize: Size(120, 50),

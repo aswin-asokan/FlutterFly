@@ -1,40 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
+import 'package:task5/pages/checkout.dart';
 import 'package:task5/widgets/cartwidget.dart';
 import 'package:task5/variables.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({super.key});
+  Cart({super.key});
 
   @override
   State<Cart> createState() => _CartState();
 }
 
 class _CartState extends State<Cart> {
-  var cartItems = [
-    [
-      "assets/images/downloadfile-6.jpg",
-      "Essential's Men's Short Sleeve",
-      "L",
-      1200
-    ],
-    [
-      "assets/images/downloadfile-5.jpg",
-      "Essential's Women's Short Sleeve",
-      "L",
-      1500
-    ]
-  ];
+  final cartBox = Hive.box('Cart');
+  final orderBox = Hive.box('Orders');
+
+  void writeOrder(String email, List orderItems) {
+    orderBox.put(email, orderItems);
+    print('Updated order items for $email: ${orderBox.get(email)}');
+  }
+
+  List orderItems = [];
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.sizeOf(context).height;
-    double width = MediaQuery.sizeOf(context).width;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    // Retrieve cart items for the specific user, ensure it's not null
+    List<dynamic> cartItems = cartBox.get(mailS, defaultValue: []);
+
+    // Calculate total prize
+    double totalPrize = 0;
+
+    for (int x = 0; x < cartItems.length; x++) {
+      final item = cartItems[x];
+      if (item != null &&
+          item.containsKey('prize') &&
+          item.containsKey('count')) {
+        totalPrize += (item['prize'] * item['count']) ??
+            0; // Ensure item['prize'] is not null
+      }
+      print('Updated cart items for ${mailS}: ${cartBox.get(mailS)}');
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
           child: SingleChildScrollView(
-            physics: ScrollPhysics(),
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -46,18 +62,25 @@ class _CartState extends State<Cart> {
                 SizedBox(
                   height: 15,
                 ),
-                ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: cartItems.length,
-                    itemBuilder: (context, index) {
-                      return Cartwidget(
-                        cartItems[index][0].toString(),
-                        cartItems[index][1].toString(),
-                        cartItems[index][2].toString(),
-                        double.parse(cartItems[index][3].toString()),
-                      );
-                    }),
+                cartItems.isNotEmpty
+                    ? ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: cartItems.length,
+                        itemBuilder: (context, index) {
+                          final item = cartItems[index];
+                          return Cartwidget(
+                            item['path'] ?? '',
+                            item['name'] ?? '',
+                            item['size'] ?? '',
+                            item['prize'] ?? 0,
+                          );
+                        })
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: Center(
+                            child: Image.asset("assets/images/nothing.png")),
+                      ),
                 SizedBox(
                   height: height * 0.2,
                 )
@@ -90,7 +113,7 @@ class _CartState extends State<Cart> {
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "\$ " + totPrize.toString(),
+                    "\₹  " + totalPrize.toStringAsFixed(2),
                     style: GoogleFonts.urbanist(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   )
@@ -103,7 +126,21 @@ class _CartState extends State<Cart> {
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(width * 0.9, 50),
                     backgroundColor: Color.fromRGBO(252, 151, 142, 1)),
-                onPressed: () {},
+                onPressed: () {
+                  if (cartItems.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Checkout(totalPrize, cartItems),
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        duration: Duration(milliseconds: 500),
+                        content: Text("Cart is Empty",
+                            style: GoogleFonts.urbanist())));
+                  }
+                },
                 child: Text(
                   "Check Out",
                   style: GoogleFonts.urbanist(
