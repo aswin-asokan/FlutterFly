@@ -18,11 +18,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
               HomeTop(height, width),
-              Homebottom() // Display content based on the selected tab
+              const Homebottom() // Display content based on the selected tab
             ],
           ),
         ),

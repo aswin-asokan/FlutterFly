@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 Widget imageList(String path) {
   return ClipRRect(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
       child: Image.asset(fit: BoxFit.cover, path));
 }
@@ -19,7 +19,7 @@ Widget profileIcon(String head, String sub, var context, Widget page) {
     child: Container(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Row(
@@ -42,10 +42,10 @@ Widget profileIcon(String head, String sub, var context, Widget page) {
                   ),
                 ],
               ),
-              Icon(Icons.arrow_forward_ios_rounded),
+              const Icon(Icons.arrow_forward_ios_rounded),
             ],
           ),
-          Divider(
+          const Divider(
             color: Colors.grey,
           )
         ],
@@ -61,16 +61,16 @@ Widget customTextField(TextEditingController name, String hint, Icon ic) {
     controller: name,
     decoration: InputDecoration(
         prefixIcon: Padding(
-          padding: EdgeInsets.only(left: 20, right: 5),
+          padding: const EdgeInsets.only(left: 20, right: 5),
           child: ic,
         ),
-        prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+        prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
         hintText: hint,
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(50)),
             borderSide:
                 BorderSide(width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(50))),
         hintStyle: GoogleFonts.urbanist(color: Colors.black)),
   );
@@ -94,13 +94,13 @@ class _customPassFieldState extends State<customPassField> {
       controller: widget.pass,
       obscureText: widget.passObscure,
       decoration: InputDecoration(
-          prefixIcon: Padding(
+          prefixIcon: const Padding(
             padding: EdgeInsets.only(left: 20, right: 5),
             child: Icon(Icons.lock),
           ),
-          prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+          prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
           hintText: "Password",
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(50)),
               borderSide: BorderSide(
                   width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
@@ -116,8 +116,8 @@ class _customPassFieldState extends State<customPassField> {
                     ? Icons.visibility
                     : Icons.visibility_off)),
           ),
-          suffixIconColor: Color.fromRGBO(48, 45, 45, 1),
-          border: OutlineInputBorder(
+          suffixIconColor: const Color.fromRGBO(48, 45, 45, 1),
+          border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(50))),
           hintStyle: GoogleFonts.urbanist(color: Colors.black)),
     );

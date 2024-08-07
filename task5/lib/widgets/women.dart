@@ -9,7 +9,7 @@ Widget Women(double width, var context) {
       childAspectRatio: .7,
       padding: const EdgeInsets.all(4.0),
       mainAxisSpacing: 5.0,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       crossAxisSpacing: 6.0,
       children: [
         ItemCard(

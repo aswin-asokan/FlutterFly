@@ -2,7 +2,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
-import 'package:task5/pages/Profile/profile.dart';
 import 'package:task5/pages/navigate.dart';
 import 'package:task5/variables.dart';
 import 'package:task5/widgets/widgets.dart';
@@ -34,7 +33,7 @@ class _SettingsState extends State<Settings> {
         child: Padding(
           padding: EdgeInsets.only(top: height * 0.12, left: 25, right: 25),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Container(
               child: Column(
                 children: [
@@ -43,7 +42,7 @@ class _SettingsState extends State<Settings> {
                     style: GoogleFonts.urbanist(
                         fontSize: 35, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   GestureDetector(
@@ -51,21 +50,21 @@ class _SettingsState extends State<Settings> {
                       showModalBottomSheet(
                           context: context,
                           builder: (context) {
-                            return Container(
+                            return SizedBox(
                               width: double.infinity,
                               child: Padding(
                                 padding: const EdgeInsets.all(15),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 30,
                                     ),
                                     Text("Choose Image",
                                         style: GoogleFonts.urbanist(
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold)),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 30,
                                     ),
                                     Row(
@@ -108,7 +107,7 @@ class _SettingsState extends State<Settings> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 30,
                                     ),
                                   ],
@@ -129,24 +128,24 @@ class _SettingsState extends State<Settings> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  customTextField(name, "Name", Icon(Icons.person)),
-                  SizedBox(
+                  customTextField(name, "Name", const Icon(Icons.person)),
+                  const SizedBox(
                     height: 15,
                   ),
-                  customTextField(mail, "Mail", Icon(Icons.mail)),
-                  SizedBox(
+                  customTextField(mail, "Mail", const Icon(Icons.mail)),
+                  const SizedBox(
                     height: 15,
                   ),
                   customPassField(pass, true),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(252, 151, 142, 1),
+                          backgroundColor: const Color.fromRGBO(252, 151, 142, 1),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50))),
                       onPressed: () {
@@ -155,7 +154,7 @@ class _SettingsState extends State<Settings> {
                             mail.text.isNotEmpty) {
                           if (!EmailValidator.validate(mail.text)) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Enter a valid Email")));
+                                const SnackBar(content: Text("Enter a valid Email")));
                           } else {
                             setState(() {
                               nameS = name.text;
@@ -168,24 +167,24 @@ class _SettingsState extends State<Settings> {
 
                             // Indicate that settings were updated
                             ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Settings Saved")));
+                                const SnackBar(content: Text("Settings Saved")));
                             setState(() {});
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Navigate(3),
+                                builder: (context) => const Navigate(3),
                               ),
                             );
                           }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Fill all fields")));
+                              const SnackBar(content: Text("Fill all fields")));
                         }
                         setState(() {});
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Container(
+                        child: SizedBox(
                           width: double.infinity,
                           child: Text("Save Settings",
                               textAlign: TextAlign.center,

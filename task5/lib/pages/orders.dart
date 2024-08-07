@@ -22,7 +22,7 @@ class _OrdersState extends State<Orders> {
         child: Padding(
           padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -31,12 +31,12 @@ class _OrdersState extends State<Orders> {
                   style: GoogleFonts.urbanist(
                       fontSize: 35, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 orderItems.isNotEmpty
                     ? ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: orderItems.length,
                         itemBuilder: (context, index) {

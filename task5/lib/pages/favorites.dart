@@ -19,7 +19,7 @@ class _FavoritesState extends State<Favorites> {
         child: Padding(
           padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -28,12 +28,12 @@ class _FavoritesState extends State<Favorites> {
                   style: GoogleFonts.urbanist(
                       fontSize: 35, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 favItems.isNotEmpty
                     ? ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: favItems.length,
                         itemBuilder: (context, index) {

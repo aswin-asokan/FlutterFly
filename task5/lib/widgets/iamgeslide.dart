@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 Widget imageSlide(String path, String h, String t, Color c) {
   return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(25),
               bottomRight: Radius.circular(25)),
           image: DecorationImage(image: AssetImage(path), fit: BoxFit.cover)),
@@ -15,7 +15,7 @@ Widget imageSlide(String path, String h, String t, Color c) {
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
-                    text: h + "\n",
+                    text: "$h\n",
                     style: GoogleFonts.urbanist(
                         fontSize: 27, color: c, fontWeight: FontWeight.bold)),
                 TextSpan(

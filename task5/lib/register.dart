@@ -13,11 +13,11 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  TextEditingController name = new TextEditingController();
-  TextEditingController phn = new TextEditingController();
-  TextEditingController email = new TextEditingController();
-  TextEditingController pass = new TextEditingController();
-  TextEditingController address = new TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController phn = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController pass = TextEditingController();
+  TextEditingController address = TextEditingController();
   final _DBbox = Hive.box('DBbox');
   void write(var name, var email, var pass, var phn, var img, var add) {
     _DBbox.put(email, [name, email, pass, phn, img, add]);
@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.only(top: height * 0.01, left: 25, right: 25),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +46,7 @@ class _RegisterState extends State<Register> {
                 style: GoogleFonts.urbanist(
                     fontSize: 25, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GestureDetector(
@@ -54,21 +54,21 @@ class _RegisterState extends State<Register> {
                   showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return Container(
+                        return SizedBox(
                           width: double.infinity,
                           child: Padding(
                             padding: const EdgeInsets.all(15),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 30,
                                 ),
                                 Text("Choose Image",
                                     style: GoogleFonts.urbanist(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold)),
-                                SizedBox(
+                                const SizedBox(
                                   height: 30,
                                 ),
                                 Row(
@@ -111,7 +111,7 @@ class _RegisterState extends State<Register> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 30,
                                 ),
                               ],
@@ -132,87 +132,87 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               TextField(
                 controller: name,
                 decoration: InputDecoration(
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.person),
                     ),
-                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Name",
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               TextField(
                 controller: phn,
                 decoration: InputDecoration(
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.phone_android),
                     ),
-                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Mobile Number",
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               TextField(
                 controller: email,
                 decoration: InputDecoration(
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.mail),
                     ),
-                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Mail ID",
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               TextField(
                 controller: address,
                 decoration: InputDecoration(
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.house),
                     ),
-                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Address",
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               TextField(
@@ -222,30 +222,30 @@ class _RegisterState extends State<Register> {
                   passNotifier.value = PasswordStrength.calculate(text: value);
                 },
                 decoration: InputDecoration(
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.lock),
                     ),
-                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Password",
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               PasswordStrengthChecker(
                 strength: passNotifier,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(252, 151, 142, 1),
+                      backgroundColor: const Color.fromRGBO(252, 151, 142, 1),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
@@ -257,7 +257,7 @@ class _RegisterState extends State<Register> {
                           phn.text.isNotEmpty) {
                         if (!EmailValidator.validate(email.text.toString())) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Enter a valid Email")));
+                              const SnackBar(content: Text("Enter a valid Email")));
                         } else {
                           n = name.text.toString();
                           e = email.text.toString();
@@ -268,16 +268,16 @@ class _RegisterState extends State<Register> {
                         }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Fill all fields")));
+                            const SnackBar(content: Text("Fill all fields")));
                       }
                     });
                     write(n, e, p, ph, i, a);
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                        MaterialPageRoute(builder: (context) => const LoginPage()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: Text("Register",
                           textAlign: TextAlign.center,
@@ -287,7 +287,7 @@ class _RegisterState extends State<Register> {
                               color: Colors.white)),
                     ),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
@@ -300,7 +300,7 @@ class _RegisterState extends State<Register> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: Text("Cancel",
                           textAlign: TextAlign.center,

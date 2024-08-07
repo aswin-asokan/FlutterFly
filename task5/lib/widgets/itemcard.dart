@@ -15,11 +15,11 @@ Widget ItemCard(String path, String shop, String about, String category,
       );
     },
     child: DecoratedBox(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(15)),
           boxShadow: [
             BoxShadow(
-              color: const Color.fromARGB(26, 88, 85, 85),
+              color: Color.fromARGB(26, 88, 85, 85),
               blurRadius: 2,
               spreadRadius: 3,
               offset: Offset(0, 5),
@@ -27,7 +27,7 @@ Widget ItemCard(String path, String shop, String about, String category,
           ],
         ),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(15)),
             color: Colors.white54,
           ),
@@ -36,7 +36,7 @@ Widget ItemCard(String path, String shop, String about, String category,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15)),
                 child: Image.asset(
@@ -66,10 +66,10 @@ Widget ItemCard(String path, String shop, String about, String category,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "₹ " + prize.toString(),
+                          "₹ $prize",
                           style: GoogleFonts.urbanist(),
                         ),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
+                        IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
                   ],

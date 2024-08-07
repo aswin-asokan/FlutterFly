@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:task5/login.dart';
-import 'package:task5/pages/Profile/Settings.dart';
-import 'package:task5/pages/checkout.dart';
 
 void main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox('DBbox');
   var cart = await Hive.openBox('Cart');
   var orders = await Hive.openBox('Orders');
-  runApp(new MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Flutter Demo',
     theme: ThemeData(
@@ -20,6 +18,6 @@ void main() async {
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.pinkAccent),
     ),
     themeMode: ThemeMode.system,
-    home: LoginPage(),
+    home: const LoginPage(),
   ));
 }

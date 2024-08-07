@@ -15,8 +15,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool? isChecked = false;
-  TextEditingController email = new TextEditingController();
-  TextEditingController pass = new TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController pass = TextEditingController();
   bool passObscure = true;
   late String mailID, password;
   final _DBbox = Hive.box('DBbox');
@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.only(top: height * 0.15, left: 25, right: 25),
         child: Container(
           child: Column(
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset("assets/images/logo_nobg.png", height: 150),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(
@@ -49,40 +49,40 @@ class _LoginPageState extends State<LoginPage> {
                 style: GoogleFonts.urbanist(
                     fontSize: 25, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               TextField(
                 controller: email,
                 decoration: InputDecoration(
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.mail_rounded),
                     ),
-                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Mail ID",
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               TextField(
                 controller: pass,
                 obscureText: passObscure,
                 decoration: InputDecoration(
-                    prefixIcon: Padding(
+                    prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.lock),
                     ),
-                    prefixIconColor: Color.fromRGBO(48, 45, 45, 1),
+                    prefixIconColor: const Color.fromRGBO(48, 45, 45, 1),
                     hintText: "Password",
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                         borderSide: BorderSide(
                             width: 1, color: Color.fromRGBO(252, 151, 142, 1))),
@@ -98,12 +98,12 @@ class _LoginPageState extends State<LoginPage> {
                               ? Icons.visibility
                               : Icons.visibility_off)),
                     ),
-                    suffixIconColor: Color.fromRGBO(48, 45, 45, 1),
-                    border: OutlineInputBorder(
+                    suffixIconColor: const Color.fromRGBO(48, 45, 45, 1),
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50))),
                     hintStyle: GoogleFonts.urbanist(color: Colors.black)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
@@ -119,13 +119,13 @@ class _LoginPageState extends State<LoginPage> {
                     "Remember me",
                     style: GoogleFonts.urbanist(fontSize: 15),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ForgotPasswordPage()),
+                              builder: (context) => const ForgotPasswordPage()),
                         );
                       },
                       child: Text(
@@ -135,12 +135,12 @@ class _LoginPageState extends State<LoginPage> {
                       ))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(252, 151, 142, 1),
+                      backgroundColor: const Color.fromRGBO(252, 151, 142, 1),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Navigate(0),
+                            builder: (context) => const Navigate(0),
                           ),
                         );
                       }
@@ -179,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: Text("Login",
                           textAlign: TextAlign.center,
@@ -189,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                               color: Colors.white)),
                     ),
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
@@ -199,11 +199,11 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Register()));
+                        MaterialPageRoute(builder: (context) => const Register()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: Text("Register Now",
                           textAlign: TextAlign.center,

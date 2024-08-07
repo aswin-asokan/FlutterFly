@@ -33,25 +33,25 @@ class _CartwidgetState extends State<Cartwidget> {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                color: const Color.fromARGB(26, 88, 85, 85),
+                color: Color.fromARGB(26, 88, 85, 85),
                 blurRadius: 2,
                 spreadRadius: 3,
                 offset: Offset(0, 5),
               ),
             ],
-            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
             color: Colors.red[50],
           ),
           height: h * 0.18,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: h * 0.18,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),
                       topLeft: Radius.circular(15)),
                   child: Image.asset(
@@ -66,7 +66,7 @@ class _CartwidgetState extends State<Cartwidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: w * 0.5,
                       child: Text(
                         widget.name,
@@ -75,36 +75,36 @@ class _CartwidgetState extends State<Cartwidget> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: w * 0.5,
                       child: Text(
-                        "Size: " + widget.size,
+                        "Size: ${widget.size}",
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.urbanist(fontSize: 16),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                         width: w * 0.5,
                         child: Text(
-                          "Prize: \₹  " + p.toString(),
+                          "Prize: ₹  $p",
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.urbanist(fontSize: 16),
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                    Container(
+                    SizedBox(
                       width: w * 0.5,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
+                          SizedBox(
                             width: w * 0.3,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(100)),
                                       color: Colors.white,
@@ -121,14 +121,14 @@ class _CartwidgetState extends State<Cartwidget> {
                                               totPrize -= widget.prize;
                                             });
                                           },
-                                          icon: Icon(
+                                          icon: const Icon(
                                             Icons.remove,
                                             size: 20,
                                           )),
                                     )),
                                 Text(count.toString()),
                                 Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(100)),
                                       color: Colors.white,
@@ -145,7 +145,7 @@ class _CartwidgetState extends State<Cartwidget> {
                                               totPrize += widget.prize;
                                             });
                                           },
-                                          icon: Icon(
+                                          icon: const Icon(
                                             Icons.add,
                                             size: 20,
                                           )),
@@ -162,7 +162,7 @@ class _CartwidgetState extends State<Cartwidget> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         )
       ],

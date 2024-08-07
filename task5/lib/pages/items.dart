@@ -34,7 +34,7 @@ class _ItemsState extends State<Items> {
     List cartItems = cartBox.get(mailS, defaultValue: []);
 
     return Scaffold(
-        backgroundColor: Color.fromRGBO(250, 234, 235, 1),
+        backgroundColor: const Color.fromRGBO(250, 234, 235, 1),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
@@ -50,17 +50,17 @@ class _ItemsState extends State<Items> {
                           initialPage: 0,
                           indicatorColor: Colors.blue,
                           indicatorBackgroundColor: Colors.grey,
-                          children: widget.images,
                           onPageChanged: (value) {},
                           autoPlayInterval: 6000,
                           isLoop: true,
+                          children: widget.images,
                         ),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
                         child: IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.favorite,
                               size: 35,
                             )),
@@ -72,13 +72,13 @@ class _ItemsState extends State<Items> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
                           children: [
-                            Icon(Icons.storefront_outlined),
-                            SizedBox(
+                            const Icon(Icons.storefront_outlined),
+                            const SizedBox(
                               width: 5,
                             ),
                             Text(widget.shop),
@@ -95,11 +95,11 @@ class _ItemsState extends State<Items> {
                           "About Item",
                           style: GoogleFonts.urbanist(color: Colors.pinkAccent),
                         ),
-                        Divider(
+                        const Divider(
                           color: Colors.pinkAccent,
                         ),
                         Text(widget.about),
-                        SizedBox(
+                        const SizedBox(
                           height: 100,
                         )
                       ],
@@ -110,7 +110,7 @@ class _ItemsState extends State<Items> {
             ),
           ),
         ),
-        bottomSheet: Container(
+        bottomSheet: SizedBox(
           width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(15),
@@ -126,13 +126,13 @@ class _ItemsState extends State<Items> {
                       style: GoogleFonts.urbanist(fontSize: 15),
                     ),
                     Text(
-                      "₹ " + widget.prize.toString(),
+                      "₹ ${widget.prize}",
                       style: GoogleFonts.urbanist(fontSize: 20),
                     ),
                   ],
                 ),
                 Container(
-                  color: Color.fromRGBO(252, 151, 142, 1),
+                  color: const Color.fromRGBO(252, 151, 142, 1),
                   height: 50,
                   child: Row(
                     children: [
@@ -141,12 +141,12 @@ class _ItemsState extends State<Items> {
                             showModalBottomSheet(
                                 context: context,
                                 builder: (context) {
-                                  return Container(
+                                  return SizedBox(
                                     width: double.infinity,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                         Text(
@@ -155,7 +155,7 @@ class _ItemsState extends State<Items> {
                                               fontSize: 25,
                                               fontWeight: FontWeight.bold),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                         OverflowBar(
@@ -223,7 +223,7 @@ class _ItemsState extends State<Items> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 20,
                                         ),
                                       ],
@@ -231,13 +231,13 @@ class _ItemsState extends State<Items> {
                                   );
                                 });
                           },
-                          icon: Icon(Icons.shopping_bag)),
+                          icon: const Icon(Icons.shopping_bag)),
                       ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
-                          fixedSize: Size(120, 50),
+                          fixedSize: const Size(120, 50),
                           elevation: 0,
-                          minimumSize: Size(50, 50),
-                          maximumSize: Size(120, 50),
+                          minimumSize: const Size(50, 50),
+                          maximumSize: const Size(120, 50),
                           backgroundColor: Colors.black87,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(0),

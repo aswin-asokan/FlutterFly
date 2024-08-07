@@ -20,25 +20,25 @@ class _OrderwidgetState extends State<Orderwidget> {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
-                color: const Color.fromARGB(26, 88, 85, 85),
+                color: Color.fromARGB(26, 88, 85, 85),
                 blurRadius: 2,
                 spreadRadius: 3,
                 offset: Offset(0, 5),
               ),
             ],
-            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderRadius: const BorderRadius.all(Radius.circular(15)),
             color: Colors.red[50],
           ),
           height: h * 0.17,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: h * 0.17,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),
                       topLeft: Radius.circular(15)),
                   child: Image.asset(
@@ -53,7 +53,7 @@ class _OrderwidgetState extends State<Orderwidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: w * 0.5,
                       child: Text(
                         "Delivery On",
@@ -62,7 +62,7 @@ class _OrderwidgetState extends State<Orderwidget> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: w * 0.5,
                       child: Text(
                         widget.date,
@@ -70,7 +70,7 @@ class _OrderwidgetState extends State<Orderwidget> {
                         style: GoogleFonts.urbanist(fontSize: 16),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                         width: w * 0.5,
                         child: Text(
                           widget.name,
@@ -83,7 +83,7 @@ class _OrderwidgetState extends State<Orderwidget> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         )
       ],

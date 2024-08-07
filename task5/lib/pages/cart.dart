@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
-import 'package:intl/intl.dart';
 import 'package:task5/pages/checkout.dart';
 import 'package:task5/widgets/cartwidget.dart';
 import 'package:task5/variables.dart';
 
 class Cart extends StatefulWidget {
-  Cart({super.key});
+  const Cart({super.key});
 
   @override
   State<Cart> createState() => _CartState();
@@ -42,7 +41,7 @@ class _CartState extends State<Cart> {
         totalPrize += (item['prize'] * item['count']) ??
             0; // Ensure item['prize'] is not null
       }
-      print('Updated cart items for ${mailS}: ${cartBox.get(mailS)}');
+      print('Updated cart items for $mailS: ${cartBox.get(mailS)}');
     }
 
     return Scaffold(
@@ -50,7 +49,7 @@ class _CartState extends State<Cart> {
         child: Padding(
           padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -59,12 +58,12 @@ class _CartState extends State<Cart> {
                   style: GoogleFonts.urbanist(
                       fontSize: 35, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 cartItems.isNotEmpty
                     ? ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: cartItems.length,
                         itemBuilder: (context, index) {
@@ -90,7 +89,7 @@ class _CartState extends State<Cart> {
         ),
       ),
       bottomSheet: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromRGBO(250, 234, 235, 1),
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25), topRight: Radius.circular(25)),
@@ -101,7 +100,7 @@ class _CartState extends State<Cart> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
@@ -113,19 +112,19 @@ class _CartState extends State<Cart> {
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "\₹  " + totalPrize.toStringAsFixed(2),
+                    "₹  ${totalPrize.toStringAsFixed(2)}",
                     style: GoogleFonts.urbanist(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(width * 0.9, 50),
-                    backgroundColor: Color.fromRGBO(252, 151, 142, 1)),
+                    backgroundColor: const Color.fromRGBO(252, 151, 142, 1)),
                 onPressed: () {
                   if (cartItems.isNotEmpty) {
                     Navigator.push(
@@ -136,7 +135,7 @@ class _CartState extends State<Cart> {
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         content: Text("Cart is Empty",
                             style: GoogleFonts.urbanist())));
                   }
@@ -149,7 +148,7 @@ class _CartState extends State<Cart> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
             ],

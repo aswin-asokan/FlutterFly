@@ -6,7 +6,7 @@ import 'package:task5/pages/Profile/profile.dart';
 
 class Navigate extends StatefulWidget {
   final int index;
-  Navigate(this.index, {super.key});
+  const Navigate(this.index, {super.key});
 
   @override
   State<Navigate> createState() => _NavigateState();
@@ -31,7 +31,7 @@ class _NavigateState extends State<Navigate> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [Home(), Cart(), Favorites(), Profile()];
+    final pages = [const Home(), const Cart(), const Favorites(), const Profile()];
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -48,12 +48,12 @@ class _NavigateState extends State<Navigate> {
             currentPageIndex = index;
             _pageController.animateToPage(
               index,
-              duration: Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 500),
               curve: Curves.linearToEaseOut,
             );
           });
         },
-        indicatorColor: Color.fromRGBO(252, 151, 142, 1),
+        indicatorColor: const Color.fromRGBO(252, 151, 142, 1),
         selectedIndex: currentPageIndex,
         destinations: const <NavigationDestination>[
           NavigationDestination(

@@ -9,7 +9,7 @@ class Checkout extends StatefulWidget {
   final double prize;
   final List<dynamic> cartItems;
 
-  Checkout(this.prize, this.cartItems, {super.key});
+  const Checkout(this.prize, this.cartItems, {super.key});
 
   @override
   State<Checkout> createState() => _CheckoutState();
@@ -51,7 +51,7 @@ class _CheckoutState extends State<Checkout> {
           child: Padding(
         padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,7 +60,7 @@ class _CheckoutState extends State<Checkout> {
                 style: GoogleFonts.urbanist(
                     fontSize: 35, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -83,7 +83,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(
@@ -91,7 +91,7 @@ class _CheckoutState extends State<Checkout> {
                 style: GoogleFonts.urbanist(
                     fontSize: 25, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               RadioListTile(
@@ -101,10 +101,10 @@ class _CheckoutState extends State<Checkout> {
                       "assets/images/cash-on-delivery.png",
                       height: 25,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Text('Cash on Delivery'),
+                    const Text('Cash on Delivery'),
                   ],
                 ),
                 value: 1,
@@ -122,10 +122,10 @@ class _CheckoutState extends State<Checkout> {
                       "assets/images/google-pay.png",
                       height: 25,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Text('Google Pay'),
+                    const Text('Google Pay'),
                   ],
                 ),
                 value: 2,
@@ -143,10 +143,10 @@ class _CheckoutState extends State<Checkout> {
                       "assets/images/paytm.png",
                       height: 25,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Text('Paytm'),
+                    const Text('Paytm'),
                   ],
                 ),
                 value: 3,
@@ -164,10 +164,10 @@ class _CheckoutState extends State<Checkout> {
                       "assets/images/amazon-pay.png",
                       height: 25,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Text('Amazon Pay'),
+                    const Text('Amazon Pay'),
                   ],
                 ),
                 value: 4,
@@ -178,7 +178,7 @@ class _CheckoutState extends State<Checkout> {
                   });
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
@@ -186,7 +186,7 @@ class _CheckoutState extends State<Checkout> {
                 style: GoogleFonts.urbanist(
                     fontSize: 25, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -205,7 +205,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -224,7 +224,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Row(
@@ -243,18 +243,18 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(width * 0.9, 50),
-                    backgroundColor: Color.fromRGBO(252, 151, 142, 1)),
+                    backgroundColor: const Color.fromRGBO(252, 151, 142, 1)),
                 onPressed: () {
                   String name = "", path = "";
                   var date = "";
                   final now = DateTime.now();
-                  var updatedDate = now.add(Duration(days: 3));
+                  var updatedDate = now.add(const Duration(days: 3));
                   String formatter = DateFormat('yMd').format(updatedDate);
 
                   for (int i = 0; i < cartItems.length; i++) {
@@ -272,14 +272,14 @@ class _CheckoutState extends State<Checkout> {
                   clearCart(mailS);
 
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       content:
                           Text("Order Placed", style: GoogleFonts.urbanist())));
 
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Navigate(1),
+                      builder: (context) => const Navigate(1),
                     ),
                   );
                 },

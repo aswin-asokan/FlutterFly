@@ -7,7 +7,7 @@ class HomeTop extends StatefulWidget {
   final double height;
   final double width;
 
-  HomeTop(this.height, this.width, {Key? key}) : super(key: key);
+  const HomeTop(this.height, this.width, {super.key});
 
   @override
   _HomeTopState createState() => _HomeTopState();
@@ -15,7 +15,7 @@ class HomeTop extends StatefulWidget {
 
 class _HomeTopState extends State<HomeTop> {
   bool _isSearching = false;
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,9 @@ class _HomeTopState extends State<HomeTop> {
             initialPage: 0,
             indicatorColor: Colors.blue,
             indicatorBackgroundColor: Colors.grey,
+            onPageChanged: (value) {},
+            autoPlayInterval: 7000,
+            isLoop: true,
             children: [
               imageSlide("assets/images/downloadfile-5.jpg",
                   "Empower Your Elegance,", "Define Your Style.", Colors.white),
@@ -38,9 +41,6 @@ class _HomeTopState extends State<HomeTop> {
                   "Elevate Your Presence.",
                   Colors.white),
             ],
-            onPageChanged: (value) {},
-            autoPlayInterval: 7000,
-            isLoop: true,
           ),
         ),
         Align(
@@ -60,7 +60,7 @@ class _HomeTopState extends State<HomeTop> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                         suffixIcon: IconButton(
-                          icon: Icon(Icons.search),
+                          icon: const Icon(Icons.search),
                           onPressed: () {
                             if (_searchController.text.isNotEmpty) {
                               Navigator.push(
@@ -89,11 +89,11 @@ class _HomeTopState extends State<HomeTop> {
                 },
               ),
               Badge(
+                isLabelVisible: false,
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.notifications_sharp),
+                  icon: const Icon(Icons.notifications_sharp),
                 ),
-                isLabelVisible: false,
               ),
             ],
           ),

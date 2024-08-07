@@ -13,7 +13,7 @@ class Homebottom extends StatefulWidget {
 
 class _HomebottomState extends State<Homebottom> {
   int _currentIndex = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   void _onPageChanged(int index) {
     setState(() {
@@ -27,7 +27,7 @@ class _HomebottomState extends State<Homebottom> {
     });
     _pageController.animateToPage(
       index,
-      duration: Duration(milliseconds: 50),
+      duration: const Duration(milliseconds: 50),
       curve: Curves.linear,
     );
   }
@@ -50,7 +50,7 @@ class _HomebottomState extends State<Homebottom> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         OverflowBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -71,7 +71,7 @@ class _HomebottomState extends State<Homebottom> {
             ),
           ],
         ),
-        SizedBox(height: 2),
+        const SizedBox(height: 2),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: _getPageContent(),
