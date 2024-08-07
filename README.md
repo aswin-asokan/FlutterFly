@@ -1,6 +1,6 @@
 # Pocket Dresses
 Welcome to the Pocket Dresses Flutter project! This repository contains the source code built during our workshop. 
-
+You can checkout the source code of the project in the [Task 5](https://github.com/aswin-asokan/FlutterFly/tree/main/task5) folder.
 ## Working Features
 * Registration: Sign up to create an account.
 * Login: Securely log in to your account.
