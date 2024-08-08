@@ -5,7 +5,10 @@ Widget imageList(String path) {
   return ClipRRect(
       borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
-      child: Image.asset(fit: BoxFit.cover, path));
+      child: Image.network(
+        path,
+        fit: BoxFit.cover,
+      ));
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -39,10 +39,10 @@ Widget ItemCard(String path, String shop, String about, String category,
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15)),
-                child: Image.asset(
+                child: Image.network(
+                  path,
                   height: w * 0.3,
                   fit: BoxFit.cover,
-                  path,
                   width: double.infinity,
                 ),
               ),
@@ -69,7 +69,8 @@ Widget ItemCard(String path, String shop, String about, String category,
                           "₹ $prize",
                           style: GoogleFonts.urbanist(),
                         ),
-                        IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
+                        IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
                   ],
