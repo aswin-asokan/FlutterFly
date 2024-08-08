@@ -7,3 +7,4 @@ String nameS = "",
     address = "";
 double totPrize = 0;
 bool checked = false;
+//////////////////////////////////////////////////////

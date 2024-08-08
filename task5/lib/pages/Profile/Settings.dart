@@ -29,9 +29,20 @@ class _SettingsState extends State<Settings> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_rounded,
+            size: 35,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: height * 0.12, left: 25, right: 25),
+          padding: EdgeInsets.only(top: height * 0.09, left: 25, right: 25),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Container(
@@ -145,7 +156,8 @@ class _SettingsState extends State<Settings> {
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(252, 151, 142, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(252, 151, 142, 1),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50))),
                       onPressed: () {
@@ -154,7 +166,8 @@ class _SettingsState extends State<Settings> {
                             mail.text.isNotEmpty) {
                           if (!EmailValidator.validate(mail.text)) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Enter a valid Email")));
+                                const SnackBar(
+                                    content: Text("Enter a valid Email")));
                           } else {
                             setState(() {
                               nameS = name.text;
@@ -167,7 +180,8 @@ class _SettingsState extends State<Settings> {
 
                             // Indicate that settings were updated
                             ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Settings Saved")));
+                                const SnackBar(
+                                    content: Text("Settings Saved")));
                             setState(() {});
                             Navigator.pushReplacement(
                               context,

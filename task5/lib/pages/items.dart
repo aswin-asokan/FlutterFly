@@ -57,6 +57,17 @@ class _ItemsState extends State<Items> {
                         ),
                       ),
                       Align(
+                        alignment: Alignment.centerLeft,
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_ios_rounded,
+                              size: 35,
+                            )),
+                      ),
+                      Align(
                         alignment: Alignment.centerRight,
                         child: IconButton(
                             onPressed: () {},
@@ -179,6 +190,12 @@ class _ItemsState extends State<Items> {
                                                 });
                                                 write(mailS, cartItems);
                                                 Navigator.pop(context);
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(const SnackBar(
+                                                        duration:
+                                                            Durations.short4,
+                                                        content: Text(
+                                                            "Added to Cart")));
                                               },
                                             ),
                                             TextButton(
@@ -200,6 +217,12 @@ class _ItemsState extends State<Items> {
                                                 });
                                                 write(mailS, cartItems);
                                                 Navigator.pop(context);
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(const SnackBar(
+                                                        duration:
+                                                            Durations.short4,
+                                                        content: Text(
+                                                            "Added to Cart")));
                                               },
                                             ),
                                             TextButton(
@@ -219,6 +242,12 @@ class _ItemsState extends State<Items> {
                                                 });
                                                 write(mailS, cartItems);
                                                 Navigator.pop(context);
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(const SnackBar(
+                                                        duration:
+                                                            Durations.short4,
+                                                        content: Text(
+                                                            "Added to Cart")));
                                               },
                                             ),
                                           ],

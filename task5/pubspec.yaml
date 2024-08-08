@@ -74,28 +74,13 @@ flutter:
     - assets/images/logo.jpg
     - assets/images/downloadfile-5.jpg
     - assets/images/downloadfile-6.jpg
-    - assets/images/Screenshot from 2024-07-21 13-55-23.png
-    - assets/images/Screenshot from 2024-07-21 13-55-31.png
     - assets/images/downloadfile-7.jpg
     - assets/images/downloadfile-8.jpg
-    - assets/images/Screenshot from 2024-07-21 18-45-09.png
-    - assets/images/Screenshot from 2024-07-21 18-45-22.png
-    - assets/images/Screenshot from 2024-07-21 19-36-50.png
-    - assets/images/Screenshot from 2024-07-21 19-37-02.png
     - assets/images/nothing.png
     - assets/images/google-pay.png
     - assets/images/cash-on-delivery.png
     - assets/images/amazon-pay.png
     - assets/images/paytm.png
-    - assets/images/Screenshot from 2024-07-28 15-05-39.png
-    - assets/images/Screenshot from 2024-07-28 15-05-53.png
-    - assets/images/Screenshot from 2024-07-28 15-06-04.png
-    - assets/images/Screenshot from 2024-07-28 15-06-20.png
-    - assets/images/Screenshot from 2024-07-28 15-06-29.png
-    - assets/images/Screenshot from 2024-07-28 15-06-37.png
-    - assets/images/Screenshot from 2024-07-28 15-07-13.png
-    - assets/images/Screenshot from 2024-07-28 15-07-28.png
-    - assets/images/Screenshot from 2024-07-28 15-07-45.png
     - assets/icon.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

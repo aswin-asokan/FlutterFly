@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task5/pages/navigate.dart';
 import 'package:task5/widgets/itemcard.dart';
 import 'package:task5/pages/items_data.dart';
 
@@ -24,7 +25,7 @@ class _SearchPageState extends State<SearchPage> {
     List<Item> allItems = [
       ...menItems,
       ...womenItems,
-      ...kidsItems
+      ...kidItems
     ]; // Combine all items
     return allItems
         .where((item) => item.title.toLowerCase().contains(query.toLowerCase()))
@@ -36,6 +37,14 @@ class _SearchPageState extends State<SearchPage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_rounded,
+              size: 35,
+            )),
         title: Text('Search Results', style: GoogleFonts.urbanist()),
       ),
       body: GridView.count(
@@ -47,7 +56,7 @@ class _SearchPageState extends State<SearchPage> {
         children: _searchResults
             .map((item) => ItemCard(
                 item.imagePath,
-                "Shop",
+                item.shop,
                 item.description,
                 item.category,
                 item.title,

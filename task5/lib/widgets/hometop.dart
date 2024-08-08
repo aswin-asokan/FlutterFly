@@ -45,57 +45,62 @@ class _HomeTopState extends State<HomeTop> {
         ),
         Align(
           alignment: Alignment.topRight,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              if (_isSearching)
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: TextField(
-                      controller: _searchController,
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.search),
-                          onPressed: () {
-                            if (_searchController.text.isNotEmpty) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      SearchPage(query: _searchController.text),
-                                ),
-                              );
-                            }
-                          },
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (_isSearching)
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: _searchController,
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () {
+                              if (_searchController.text.isNotEmpty) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SearchPage(
+                                        query: _searchController.text),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
                         ),
                       ),
                     ),
                   ),
+                IconButton(
+                  icon: Icon(_isSearching ? Icons.close : Icons.search),
+                  onPressed: () {
+                    setState(() {
+                      _isSearching = !_isSearching;
+                      if (!_isSearching) {
+                        _searchController.clear();
+                      }
+                    });
+                  },
                 ),
-              IconButton(
-                icon: Icon(_isSearching ? Icons.close : Icons.search),
-                onPressed: () {
-                  setState(() {
-                    _isSearching = !_isSearching;
-                    if (!_isSearching) {
-                      _searchController.clear();
-                    }
-                  });
-                },
-              ),
-              Badge(
-                isLabelVisible: false,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_sharp),
+                Badge(
+                  isLabelVisible: false,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.notifications_sharp),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
