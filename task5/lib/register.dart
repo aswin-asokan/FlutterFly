@@ -257,7 +257,8 @@ class _RegisterState extends State<Register> {
                           phn.text.isNotEmpty) {
                         if (!EmailValidator.validate(email.text.toString())) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Enter a valid Email")));
+                              const SnackBar(
+                                  content: Text("Enter a valid Email")));
                         } else {
                           n = name.text.toString();
                           e = email.text.toString();
@@ -272,8 +273,10 @@ class _RegisterState extends State<Register> {
                       }
                     });
                     write(n, e, p, ph, i, a);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const LoginPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -296,7 +299,7 @@ class _RegisterState extends State<Register> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login');
+                    Navigator.pop(context);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),

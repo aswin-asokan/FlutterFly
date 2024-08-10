@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:task5/variables.dart';
 import 'package:task5/widgets/orderwidget.dart';
+import 'package:task5/widgets/widgets.dart';
 
 class Orders extends StatefulWidget {
   const Orders({super.key});
@@ -18,6 +19,7 @@ class _OrdersState extends State<Orders> {
     List<dynamic> orderItems = orderBox.get(mailS, defaultValue: []);
     double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
+      appBar: customBack(context, "My Orders"),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
@@ -26,11 +28,6 @@ class _OrdersState extends State<Orders> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  "My Orders",
-                  style: GoogleFonts.urbanist(
-                      fontSize: 35, fontWeight: FontWeight.bold),
-                ),
                 const SizedBox(
                   height: 15,
                 ),

@@ -129,3 +129,45 @@ class _customPassFieldState extends State<customPassField> {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
+PreferredSizeWidget customBack(BuildContext context, String title) {
+  return AppBar(
+    leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back_ios_new_rounded,
+          size: 30,
+        )),
+    centerTitle: true,
+    title: Text(
+      title,
+      style: GoogleFonts.urbanist(fontSize: 30, fontWeight: FontWeight.bold),
+    ),
+  );
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+Widget legal(String head, String body) {
+  return Container(
+    padding: EdgeInsets.only(left: 20, right: 20, bottom: 25),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          head,
+          style:
+              GoogleFonts.urbanist(fontSize: 23, fontWeight: FontWeight.w700),
+        ),
+        Text(
+          body,
+          style: GoogleFonts.urbanist(
+            fontSize: 17,
+          ),
+        )
+      ],
+    ),
+  );
+}

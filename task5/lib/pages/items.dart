@@ -28,7 +28,6 @@ class _ItemsState extends State<Items> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
 
     // Fetch existing cart items for the current user
     List cartItems = cartBox.get(mailS, defaultValue: []);

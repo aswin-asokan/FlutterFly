@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:task5/login.dart';
-import 'package:task5/pages/Profile/EditProfile.dart';
-import 'package:task5/pages/Profile/Settings.dart';
+import 'package:task5/pages/Settings/Settings.dart';
+import 'package:task5/pages/Settings/about.dart';
+import 'package:task5/pages/Settings/legalPolicies.dart';
+import 'package:task5/pages/Settings/payment.dart';
+import 'package:task5/pages/Settings/savedAddress.dart';
 import 'package:task5/pages/orders.dart';
 import 'package:task5/variables.dart';
 import 'package:task5/widgets/widgets.dart';
@@ -104,18 +107,21 @@ class _ProfileState extends State<Profile> {
                   const SizedBox(
                     height: 15,
                   ),
-                  profileIcon(
-                      "Settings", "Edit your preferences", context, const Settings()),
+                  profileIcon("Settings", "Edit your preferences", context,
+                      const Settings()),
                   profileIcon(
                       "My Orders", "View your orders", context, const Orders()),
                   profileIcon("Saved Addresses", "Change delivery address",
-                      context, const Editprofile()),
+                      context, const Savedaddress()),
                   profileIcon("Payment Methods", "Saved credit/debit cards",
-                      context, const Editprofile()),
-                  profileIcon("Terms and Conditions",
-                      "Terms, Policies, and Licenses", context, const Editprofile()),
+                      context, const Payment()),
                   profileIcon(
-                      "About", "Know more about us", context, const Editprofile()),
+                      "Terms and Conditions",
+                      "Terms, Policies, and Licenses",
+                      context,
+                      const Legalpolicies()),
+                  profileIcon(
+                      "About", "Know more about us", context, const About()),
                 ],
               ),
             ),

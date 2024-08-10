@@ -29,32 +29,17 @@ class _SettingsState extends State<Settings> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_rounded,
-            size: 35,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+      appBar: customBack(context, "Settings"),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: height * 0.09, left: 25, right: 25),
+          padding: EdgeInsets.only(left: 25, right: 25),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Container(
               child: Column(
                 children: [
-                  Text(
-                    "Settings",
-                    style: GoogleFonts.urbanist(
-                        fontSize: 35, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 25,
+                  SizedBox(
+                    height: 30,
                   ),
                   GestureDetector(
                     onTap: () {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task5/pages/cart.dart';
 import 'package:task5/pages/favorites.dart';
 import 'package:task5/pages/home.dart';
-import 'package:task5/pages/Profile/profile.dart';
+import 'package:task5/pages/Settings/profile.dart';
 
 class Navigate extends StatefulWidget {
   final int index;
@@ -31,7 +31,12 @@ class _NavigateState extends State<Navigate> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = [const Home(), const Cart(), const Favorites(), const Profile()];
+    final pages = [
+      const Home(),
+      const Cart(),
+      const Favorites(),
+      const Profile()
+    ];
     return Scaffold(
       body: PageView(
         controller: _pageController,
