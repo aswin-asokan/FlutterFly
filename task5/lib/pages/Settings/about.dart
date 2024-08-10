@@ -65,7 +65,7 @@ class _AboutState extends State<About> {
                       ),
                       onTap: () {
                         launchUrl(urlPortfolio);
-                      })
+                      }),
                 ],
               )
             ],

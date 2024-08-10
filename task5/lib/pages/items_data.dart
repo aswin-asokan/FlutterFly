@@ -1,6 +1,9 @@
+import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:task5/widgets/widgets.dart';
 
+// Example Item class
 class Item {
   String imagePath;
   String title;
@@ -14,103 +17,98 @@ class Item {
       this.price, this.imageList);
 }
 
-List<Item> menItems = [
-  Item(
-    "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/Screenshot%20from%202024-07-21%2013-55-23.png",
-    "Essential's Men's Short Sleeve\n",
-    "Essential's",
-    "Step into timeless style with our Classic Fit Cotton Shirt, a wardrobe essential that blends comfort with elegance. Crafted from premium, breathable cotton, this shirt is designed to keep you cool and comfortable all day long.",
-    "Shirt",
-    1200,
-    [
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/Screenshot%20from%202024-07-21%2013-55-23.png"),
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/Screenshot%20from%202024-07-21%2013-55-31.png"),
-    ],
-  ),
-  Item(
-    "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/71WBVg0YE8L._SX569_.jpg",
-    "Van Heusen Men's Solid Polo T Regular Fit Shirt\n",
-    "Van Heusen",
-    "The minimal detailing, flattering fit and fine cotton fabric ensure it will be a weekend favorite.",
-    "Shirt",
-    599,
-    [
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/71WBVg0YE8L._SX569_.jpg"),
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/71ZG4Uqu5EL._SX569_.jpg"),
-    ],
-  ),
-  Item(
-    "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/71x4rLhMkML._SY741_.jpg",
-    "Lymio Men T-Shirt || T-Shirt for Men || Plain T Shirt || T-Shirt (Polo-18-21)\n",
-    "Lymio",
-    "Men T-Shirt || T-Shirt for Men || Plain T Shirt || T-Shirt",
-    "Shirt",
-    349,
-    [
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/71x4rLhMkML._SY741_.jpg"),
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/61BgTz16eTL._SY741_.jpg"),
-    ],
-  ),
-  Item(
-    "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/710Wq4cILqL._SY741_.jpg",
-    "Lymio Track Pant for Men || Track Pants || Plain Track Pant (Track-06-08)\n",
-    "Lymio",
-    "Track Pant for Men || Track Pants",
-    "Shirt",
-    419,
-    [
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/710Wq4cILqL._SY741_.jpg"),
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/men/610IIi6wHuL._SY741_.jpg"),
-    ],
-  ),
-];
+List<Item> menItems = [];
+Future<void> loadCSVMen() async {
+  final String csvRaw = await rootBundle.loadString('assets/mendata.csv');
 
-List<Item> womenItems = [
-  Item(
-    "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/women/Screenshot%20from%202024-07-21%2018-45-22.png",
-    "GoSriKi Women Kurta with Pant & Dupatta\n",
-    "Shop",
-    "",
-    "Shirt",
-    1200,
-    [
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/women/Screenshot%20from%202024-07-21%2018-45-22.png"),
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/women/Screenshot%20from%202024-07-21%2018-45-09.png"),
-    ],
-  ),
-  Item(
-    "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/women/Screenshot%20from%202024-07-28%2015-06-29.png",
-    "Women Kurtha\n",
-    "Shop",
-    "Step into timeless style with our Classic Fit Cotton Kurtha",
-    "Saree",
-    1500,
-    [
-      imageList(
-          "https://raw.githubusercontent.com/aswin-asokan/FlutterFly/main/task5/assets/images/women/Screenshot%20from%202024-07-28%2015-06-29.png"),
-    ],
-  ),
-];
+  // Parse the CSV string with the default delimiter (',') or specify if different
+  List<List<dynamic>> csvData =
+      const CsvToListConverter(eol: '\n').convert(csvRaw);
 
-List<Item> kidItems = [
-  Item(
-      "assets/images/Screenshot from 2024-07-21 19-36-50.png",
-      "Allen Solly Boys Regular Fit Tshirt\n",
-      "Shop",
-      "Material composition60/40 Cotton Polyester\nFit typeRegular Fit\nSleeve typeHalf Sleeve\nCollar styleCollarless\nLengthStandard Length\nNeck styleDom\nCountry of OriginIndia",
-      "T-Shirt",
-      1200, [
-    imageList("assets/images/Screenshot from 2024-07-21 19-36-50.png"),
-    imageList("assets/images/Screenshot from 2024-07-21 19-37-02.png"),
-  ])
-];
+  // Clear existing items to avoid duplicates if loading multiple times
+  menItems.clear();
+
+  for (List<dynamic> row in csvData) {
+    if (row.isEmpty) continue; // Skip empty rows
+
+    // Store each column value into respective variables
+    String list1 = row[0].toString();
+    String list2 = row[1].toString();
+    String list3 = row[2].toString();
+    String list4 = row[3].toString();
+    String list5 = row[4].toString();
+    double list6 = double.tryParse(row[5].toString()) ?? 0.0;
+
+    // Handle image URLs (assuming the image list is in the 7th column)
+    String list7 = row[6].toString();
+    RegExp urlPattern = RegExp(r'\"(https://[^\"]+)\"');
+    Iterable<RegExpMatch> matches = urlPattern.allMatches(list7);
+    List<Widget> list8 = matches.map((match) {
+      String url = match.group(1)!; // Get the matched URL
+      return imageList(url);
+    }).toList();
+
+    // Create an Item and add it to the menItems list
+    menItems.add(Item(list1, list2, list3, list4, list5, list6, list8));
+  }
+}
+
+List<Item> womenItems = [];
+Future<void> loadCSVWomen() async {
+  final String csvRaw = await rootBundle.loadString('assets/womendata.csv');
+  List<List<dynamic>> csvData =
+      const CsvToListConverter(eol: '\n').convert(csvRaw);
+  // Clear existing items to avoid duplicates if loading multiple times
+  menItems.clear();
+  for (List<dynamic> row in csvData) {
+    if (row.isEmpty) continue; // Skip empty rows
+    // Store each column value into respective variables
+    String list1 = row[0].toString();
+    String list2 = row[1].toString();
+    String list3 = row[2].toString();
+    String list4 = row[3].toString();
+    String list5 = row[4].toString();
+    double list6 = double.tryParse(row[5].toString()) ?? 0.0;
+
+    // Handle image URLs (assuming the image list is in the 7th column)
+    String list7 = row[6].toString();
+    RegExp urlPattern = RegExp(r'\"(https://[^\"]+)\"');
+    Iterable<RegExpMatch> matches = urlPattern.allMatches(list7);
+    List<Widget> list8 = matches.map((match) {
+      String url = match.group(1)!; // Get the matched URL
+      return imageList(url);
+    }).toList();
+    // Create an Item and add it to the menItems list
+    womenItems.add(Item(list1, list2, list3, list4, list5, list6, list8));
+  }
+}
+
+List<Item> kidItems = [];
+Future<void> loadCSVkid() async {
+  final String csvRaw = await rootBundle.loadString('assets/kids.csv');
+  List<List<dynamic>> csvData =
+      const CsvToListConverter(eol: '\n').convert(csvRaw);
+  // Clear existing items to avoid duplicates if loading multiple times
+  menItems.clear();
+  for (List<dynamic> row in csvData) {
+    if (row.isEmpty) continue; // Skip empty rows
+    // Store each column value into respective variables
+    String list1 = row[0].toString();
+    String list2 = row[1].toString();
+    String list3 = row[2].toString();
+    String list4 = row[3].toString();
+    String list5 = row[4].toString();
+    double list6 = double.tryParse(row[5].toString()) ?? 0.0;
+
+    // Handle image URLs (assuming the image list is in the 7th column)
+    String list7 = row[6].toString();
+    RegExp urlPattern = RegExp(r'\"(https://[^\"]+)\"');
+    Iterable<RegExpMatch> matches = urlPattern.allMatches(list7);
+    List<Widget> list8 = matches.map((match) {
+      String url = match.group(1)!; // Get the matched URL
+      return imageList(url);
+    }).toList();
+    // Create an Item and add it to the menItems list
+    kidItems.add(Item(list1, list2, list3, list4, list5, list6, list8));
+  }
+}

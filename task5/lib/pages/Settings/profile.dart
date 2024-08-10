@@ -7,7 +7,7 @@ import 'package:task5/pages/Settings/about.dart';
 import 'package:task5/pages/Settings/legalPolicies.dart';
 import 'package:task5/pages/Settings/payment.dart';
 import 'package:task5/pages/Settings/savedAddress.dart';
-import 'package:task5/pages/orders.dart';
+import 'package:task5/pages/Settings/orders.dart';
 import 'package:task5/variables.dart';
 import 'package:task5/widgets/widgets.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task5/pages/items_data.dart';
 import 'package:task5/widgets/kids.dart';
 import 'package:task5/widgets/men.dart';
 import 'package:task5/widgets/women.dart';
@@ -11,7 +12,29 @@ class Homebottom extends StatefulWidget {
   State<Homebottom> createState() => _HomebottomState();
 }
 
+bool _isDataLoaded = false;
+
 class _HomebottomState extends State<Homebottom> {
+  void initState() {
+    super.initState();
+
+    // Load the CSV data only once
+    if (!_isDataLoaded) {
+      Future.wait([
+        loadCSVkid(),
+        loadCSVWomen(),
+        loadCSVMen(),
+      ]).then((_) {
+        setState(() {
+          _isDataLoaded = true; // Mark data as loaded
+        });
+      }).catchError((error) {
+        // Handle any errors during CSV loading
+        print('Error loading CSV data: $error');
+      });
+    }
+  }
+
   int _currentIndex = 0;
   final PageController _pageController = PageController();
 

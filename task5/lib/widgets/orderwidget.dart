@@ -41,7 +41,7 @@ class _OrderwidgetState extends State<Orderwidget> {
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),
                       topLeft: Radius.circular(15)),
-                  child: Image.asset(
+                  child: Image.network(
                     fit: BoxFit.cover,
                     widget.path,
                     width: w * 0.3,

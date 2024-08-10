@@ -22,7 +22,7 @@ class _OrdersState extends State<Orders> {
       appBar: customBack(context, "My Orders"),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: height * 0.06, left: 25, right: 25),
+          padding: EdgeInsets.only(top: 5, left: 25, right: 25),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
