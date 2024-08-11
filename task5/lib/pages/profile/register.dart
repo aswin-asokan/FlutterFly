@@ -253,6 +253,8 @@ class _RegisterState extends State<Register> {
                   onPressed: () {
                     var data = _DBbox.get(email.text.toString());
                     if (data == null) {
+                      var strength =
+                          estimatePasswordStrength(pass.text.toString());
                       setState(() {
                         if (name.text.isNotEmpty &&
                             email.text.isNotEmpty &&
@@ -263,10 +265,7 @@ class _RegisterState extends State<Register> {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text("Enter a valid Email")));
-                          }
-                          var strength =
-                              estimatePasswordStrength(pass.text.toString());
-                          if (strength == 0) {
+                          } else if (strength == 0) {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text("Choose a Strong Password")));
