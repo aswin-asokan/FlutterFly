@@ -47,24 +47,27 @@ class _SearchPageState extends State<SearchPage> {
             )),
         title: Text('Search Results', style: GoogleFonts.urbanist()),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: .7,
-        padding: const EdgeInsets.all(4.0),
-        mainAxisSpacing: 10.0,
-        crossAxisSpacing: 6.0,
-        children: _searchResults
-            .map((item) => ItemCard(
-                item.imagePath,
-                item.shop,
-                item.description,
-                item.category,
-                item.title,
-                item.price,
-                width,
-                item.imageList,
-                context))
-            .toList(),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: GridView.count(
+          crossAxisCount: 2,
+          childAspectRatio: .7,
+          padding: const EdgeInsets.all(4.0),
+          mainAxisSpacing: 10.0,
+          crossAxisSpacing: 6.0,
+          children: _searchResults
+              .map((item) => ItemCard(
+                  item.imagePath,
+                  item.shop,
+                  item.description,
+                  item.category,
+                  item.title,
+                  item.price,
+                  width,
+                  item.imageList,
+                  context))
+              .toList(),
+        ),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:password_strength/password_strength.dart';
 import 'package:password_strength_checker/password_strength_checker.dart';
+import 'package:task5/widgets/widgets.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -35,10 +37,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
     return Scaffold(
+      appBar: customBack(context, ""),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.only(top: height * 0.15, left: 25, right: 25),
+        padding: EdgeInsets.only(top: height * 0.1, left: 25, right: 25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,7 +114,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 onPressed: () {
                   String email = emailController.text.toString();
                   String newPassword = newPasswordController.text.toString();
-                  resetPassword(email, newPassword);
+                  var strength = estimatePasswordStrength(newPassword);
+                  if (strength == 0) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Choose a Strong Password")));
+                  } else
+                    (email, newPassword);
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),

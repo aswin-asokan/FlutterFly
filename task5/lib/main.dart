@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:task5/pages/profile/login.dart';
+import 'package:task5/pages/home.dart';
 
 void main() async {
   await Hive.initFlutter();

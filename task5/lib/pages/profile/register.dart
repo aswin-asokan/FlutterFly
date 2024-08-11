@@ -1,9 +1,12 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:password_strength/password_strength.dart';
 import 'package:password_strength_checker/password_strength_checker.dart';
 import 'package:task5/pages/profile/login.dart';
+import 'package:task5/widgets/widgets.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -32,6 +35,7 @@ class _RegisterState extends State<Register> {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      appBar: customBack(context, "Register your account"),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -41,11 +45,6 @@ class _RegisterState extends State<Register> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "Register your account",
-                style: GoogleFonts.urbanist(
-                    fontSize: 25, fontWeight: FontWeight.bold),
-              ),
               const SizedBox(
                 height: 10,
               ),
@@ -157,7 +156,10 @@ class _RegisterState extends State<Register> {
               ),
               TextField(
                 controller: phn,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                maxLength: 10,
                 decoration: InputDecoration(
+                    counterText: "",
                     prefixIcon: const Padding(
                       padding: EdgeInsets.only(left: 20, right: 5),
                       child: Icon(Icons.phone_android),
@@ -249,34 +251,47 @@ class _RegisterState extends State<Register> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
-                    setState(() {
-                      if (name.text.isNotEmpty &&
-                          email.text.isNotEmpty &&
-                          pass.text.isNotEmpty &&
-                          address.text.isNotEmpty &&
-                          phn.text.isNotEmpty) {
-                        if (!EmailValidator.validate(email.text.toString())) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text("Enter a valid Email")));
+                    var data = _DBbox.get(email.text.toString());
+                    if (data == null) {
+                      setState(() {
+                        if (name.text.isNotEmpty &&
+                            email.text.isNotEmpty &&
+                            pass.text.isNotEmpty &&
+                            address.text.isNotEmpty &&
+                            phn.text.isNotEmpty) {
+                          if (!EmailValidator.validate(email.text.toString())) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text("Enter a valid Email")));
+                          }
+                          var strength =
+                              estimatePasswordStrength(pass.text.toString());
+                          if (strength == 0) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text("Choose a Strong Password")));
+                          } else {
+                            n = name.text.toString();
+                            e = email.text.toString();
+                            p = pass.text.toString();
+                            ph = phn.text.toString();
+                            a = address.text.toString();
+                            i = img;
+                          }
                         } else {
-                          n = name.text.toString();
-                          e = email.text.toString();
-                          p = pass.text.toString();
-                          ph = phn.text.toString();
-                          a = address.text.toString();
-                          i = img;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Fill all fields")));
                         }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Fill all fields")));
-                      }
-                    });
-                    write(n, e, p, ph, i, a);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
+                      });
+                      write(n, e, p, ph, i, a);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Email already in use")));
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),

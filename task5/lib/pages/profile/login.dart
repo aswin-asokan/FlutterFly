@@ -107,8 +107,10 @@ class _LoginPageState extends State<LoginPage> {
                 height: 15,
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Checkbox(
+                  /*Checkbox(
                       value: isChecked,
                       onChanged: (newBool) {
                         setState(() {
@@ -119,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                     "Remember me",
                     style: GoogleFonts.urbanist(fontSize: 15),
                   ),
-                  const Spacer(),
+                  const Spacer(),*/
                   TextButton(
                       onPressed: () {
                         Navigator.push(
