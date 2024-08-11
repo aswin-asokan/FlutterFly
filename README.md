@@ -12,7 +12,6 @@ Dowload and try the app from [here](https://github.com/aswin-asokan/FlutterFly/r
 * Checkout from Cart: Complete your purchase from the cart.
 * Edit Profile: Update your profile information.
 ## Future Updates
-* Direct Checkout from Buy Now: Quickly checkout with a single click.
 * Other Profile Options: More ways to customize your profile.
 * Favorites: Mark and manage your favorite items.
 
