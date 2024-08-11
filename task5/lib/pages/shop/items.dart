@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:task5/pages/shop/checkout.dart';
 import 'package:task5/variables.dart';
 
 class Items extends StatefulWidget {
@@ -17,6 +18,10 @@ class Items extends StatefulWidget {
 }
 
 class _ItemsState extends State<Items> {
+  void inistate() {
+    setState(() {});
+  }
+
   late String size;
   final cartBox = Hive.box('Cart');
 
@@ -271,7 +276,16 @@ class _ItemsState extends State<Items> {
                             borderRadius: BorderRadius.circular(0),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          List<Map<String, String>> item = [
+                            {'name': widget.name, 'path': widget.path}
+                          ];
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Checkout(widget.prize, item, "buynow")));
+                        },
                         label: Text(
                           "Buy Now",
                           style: GoogleFonts.urbanist(color: Colors.white),

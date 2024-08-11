@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task5/pages/items_data.dart';
+import 'package:task5/pages/listItems/items_data.dart';
 import 'package:task5/widgets/kids.dart';
 import 'package:task5/widgets/men.dart';
 import 'package:task5/widgets/women.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task5/pages/items.dart';
+import 'package:task5/pages/shop/items.dart';
 
 Widget ItemCard(String path, String shop, String about, String category,
     String name, double prize, double w, List<Widget> images, var context) {

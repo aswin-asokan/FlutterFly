@@ -25,7 +25,6 @@ class _CartwidgetState extends State<Cartwidget> {
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
     print(widget.name + widget.path);
     return Column(
@@ -44,12 +43,12 @@ class _CartwidgetState extends State<Cartwidget> {
             borderRadius: const BorderRadius.all(Radius.circular(15)),
             color: Colors.red[50],
           ),
-          height: h * 0.18,
+          height: 140,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: h * 0.18,
+                height: 140,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),

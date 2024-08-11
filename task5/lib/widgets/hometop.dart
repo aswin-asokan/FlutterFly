@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:task5/pages/seach_page.dart';
+import 'package:task5/pages/Settings/notifications.dart';
+import 'package:task5/pages/listItems/seach_page.dart';
+import 'package:task5/variables.dart';
 import 'package:task5/widgets/iamgeslide.dart';
 
 class HomeTop extends StatefulWidget {
@@ -92,13 +94,35 @@ class _HomeTopState extends State<HomeTop> {
                     });
                   },
                 ),
-                Badge(
-                  isLabelVisible: false,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.notifications_sharp),
-                  ),
-                ),
+                Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          noti = false;
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Notifications()),
+                        );
+                      },
+                      icon: const Icon(Icons.notifications_sharp),
+                    ),
+                    if (noti)
+                      Positioned(
+                          right:
+                              6, // Adjust this value to position the badge horizontally
+                          top:
+                              6, // Adjust this value to position the badge vertically
+                          child: Icon(
+                            Icons.circle_sharp,
+                            size: 15,
+                            color: Colors.redAccent,
+                          )),
+                  ],
+                )
               ],
             ),
           ),

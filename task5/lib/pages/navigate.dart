@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task5/pages/cart.dart';
-import 'package:task5/pages/favorites.dart';
+import 'package:task5/pages/shop/cart.dart';
+import 'package:task5/pages/shop/favorites.dart';
 import 'package:task5/pages/home.dart';
 import 'package:task5/pages/Settings/profile.dart';
 

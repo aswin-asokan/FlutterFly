@@ -8,8 +8,8 @@ import 'package:intl/intl.dart';
 class Checkout extends StatefulWidget {
   final double prize;
   final List<dynamic> cartItems;
-
-  const Checkout(this.prize, this.cartItems, {super.key});
+  String page;
+  Checkout(this.prize, this.cartItems, this.page, {super.key});
 
   @override
   State<Checkout> createState() => _CheckoutState();
@@ -275,13 +275,16 @@ class _CheckoutState extends State<Checkout> {
                       duration: const Duration(milliseconds: 500),
                       content:
                           Text("Order Placed", style: GoogleFonts.urbanist())));
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Navigate(1),
-                    ),
-                  );
+                  if (widget.page.compareTo("cart") == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Navigate(1),
+                      ),
+                    );
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
                 child: Text(
                   "Check Out",

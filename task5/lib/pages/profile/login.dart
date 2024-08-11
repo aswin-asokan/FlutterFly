@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:task5/pages/forgotPass.dart';
+import 'package:task5/pages/profile/forgotPass.dart';
 import 'package:task5/pages/navigate.dart';
-import 'package:task5/register.dart';
+import 'package:task5/pages/profile/register.dart';
 import 'package:task5/variables.dart';
 
 class LoginPage extends StatefulWidget {
@@ -198,8 +198,10 @@ class _LoginPageState extends State<LoginPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50))),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Register()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Register()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),

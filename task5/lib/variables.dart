@@ -7,6 +7,7 @@ String nameS = "",
     address = "";
 double totPrize = 0;
 bool checked = false;
+bool noti = false;
 //////////////////////////////////////////////////////
 ////Legal Text
 List<String> termsHead = [

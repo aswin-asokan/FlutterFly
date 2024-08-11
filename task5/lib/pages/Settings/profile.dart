@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
-import 'package:task5/login.dart';
+import 'package:task5/pages/profile/login.dart';
 import 'package:task5/pages/Settings/Settings.dart';
 import 'package:task5/pages/Settings/about.dart';
 import 'package:task5/pages/Settings/legalPolicies.dart';

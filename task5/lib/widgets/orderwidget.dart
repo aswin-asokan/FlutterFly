@@ -13,7 +13,6 @@ class Orderwidget extends StatefulWidget {
 class _OrderwidgetState extends State<Orderwidget> {
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
     return Column(
       children: [
@@ -31,12 +30,12 @@ class _OrderwidgetState extends State<Orderwidget> {
             borderRadius: const BorderRadius.all(Radius.circular(15)),
             color: Colors.red[50],
           ),
-          height: h * 0.17,
+          height: 140,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: h * 0.17,
+                height: 140,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(15),

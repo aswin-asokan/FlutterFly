@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task5/pages/navigate.dart';
 import 'package:task5/widgets/itemcard.dart';
-import 'package:task5/pages/items_data.dart';
+import 'package:task5/pages/listItems/items_data.dart';
 
 class SearchPage extends StatefulWidget {
   final String query;

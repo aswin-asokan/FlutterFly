@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
-import 'package:task5/pages/checkout.dart';
+import 'package:task5/pages/shop/checkout.dart';
 import 'package:task5/widgets/cartwidget.dart';
 import 'package:task5/variables.dart';
 
@@ -130,7 +130,8 @@ class _CartState extends State<Cart> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Checkout(totalPrize, cartItems),
+                        builder: (context) =>
+                            Checkout(totalPrize, cartItems, "cart"),
                       ),
                     );
                   } else {

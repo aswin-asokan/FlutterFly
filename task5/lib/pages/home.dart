@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task5/pages/items_data.dart';
+import 'package:task5/pages/listItems/items_data.dart';
 import 'package:task5/widgets/homebottom.dart';
 import 'package:task5/widgets/hometop.dart';
 
@@ -11,6 +11,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  void initstate() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;

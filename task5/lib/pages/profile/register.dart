@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:password_strength_checker/password_strength_checker.dart';
-import 'package:task5/login.dart';
+import 'package:task5/pages/profile/login.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
