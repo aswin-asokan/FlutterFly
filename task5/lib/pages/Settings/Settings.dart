@@ -32,13 +32,13 @@ class _SettingsState extends State<Settings> {
       appBar: customBack(context, "Settings"),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 25, right: 25),
+          padding: const EdgeInsets.only(left: 25, right: 25),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Container(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   GestureDetector(

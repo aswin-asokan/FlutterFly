@@ -55,7 +55,7 @@ class _HomeTopState extends State<HomeTop> {
                 if (_isSearching)
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: _searchController,
                         decoration: InputDecoration(
@@ -105,13 +105,13 @@ class _HomeTopState extends State<HomeTop> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Notifications()),
+                              builder: (context) => const Notifications()),
                         );
                       },
                       icon: const Icon(Icons.notifications_sharp),
                     ),
                     if (noti)
-                      Positioned(
+                      const Positioned(
                           right:
                               6, // Adjust this value to position the badge horizontally
                           top:

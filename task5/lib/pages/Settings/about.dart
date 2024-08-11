@@ -21,7 +21,7 @@ class _AboutState extends State<About> {
       appBar: customBack(context, "About Us"),
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -32,7 +32,7 @@ class _AboutState extends State<About> {
               const SizedBox(
                 height: 15,
               ),
-              Divider(
+              const Divider(
                 color: Colors.grey,
               ),
               Text(
@@ -40,7 +40,7 @@ class _AboutState extends State<About> {
                 "Pocket Dresses is a charming shopping app with a minimalistic and modern design, Pocket Dresses offers a curated selection of cute dresses for every occasion. Enjoy a seamless shopping experience as you explore our stylish collection.",
                 style: GoogleFonts.urbanist(fontSize: 17),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -55,7 +55,7 @@ class _AboutState extends State<About> {
                       onTap: () {
                         launchUrl(urlGithub);
                       }),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   GestureDetector(

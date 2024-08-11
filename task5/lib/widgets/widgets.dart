@@ -135,7 +135,7 @@ PreferredSizeWidget customBack(BuildContext context, String title) {
         onPressed: () {
           Navigator.pop(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back_ios_new_rounded,
           size: 30,
         )),
@@ -151,7 +151,7 @@ PreferredSizeWidget customBack(BuildContext context, String title) {
 ///////////////////////////////////////////////////////////////////////////////////////
 Widget legal(String head, String body) {
   return Container(
-    padding: EdgeInsets.only(left: 20, right: 20, bottom: 25),
+    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

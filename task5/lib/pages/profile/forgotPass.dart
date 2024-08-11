@@ -118,8 +118,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   if (strength == 0) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Choose a Strong Password")));
-                  } else
+                  } else {
                     (email, newPassword);
+                  }
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),

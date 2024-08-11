@@ -17,7 +17,7 @@ class _LegalpagesState extends State<Legalpages> {
       appBar: customBack(context, widget.title),
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(), child: widget.widgetBody),
       )),

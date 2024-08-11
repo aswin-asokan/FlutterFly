@@ -18,7 +18,7 @@ class _LegalpoliciesState extends State<Legalpolicies> {
       appBar: customBack(context, "Legal Policies"),
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -94,7 +94,7 @@ class _LegalpoliciesState extends State<Legalpolicies> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 40),
+                  padding: const EdgeInsets.only(bottom: 40),
                   child: Text(
                     "© Pocket Dresses 2024",
                     style: GoogleFonts.urbanist(fontSize: 17),

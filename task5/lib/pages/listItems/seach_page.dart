@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task5/pages/navigate.dart';
 import 'package:task5/widgets/itemcard.dart';
 import 'package:task5/pages/listItems/items_data.dart';
 
@@ -41,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_rounded,
               size: 35,
             )),

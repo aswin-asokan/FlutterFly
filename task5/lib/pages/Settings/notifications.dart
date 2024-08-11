@@ -19,7 +19,9 @@ class _NotificationsState extends State<Notifications> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: notiItem.length,
-              itemBuilder: (context, index) {})
+              itemBuilder: (context, index) {
+                return null;
+              })
           : Padding(
               padding: const EdgeInsets.only(top: 50),
               child: Center(child: Image.asset("assets/images/nothing.png")),
